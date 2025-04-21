@@ -5,7 +5,7 @@ import os
 COINGECKO_API_KEY = os.environ.get("API_KEY")
 
 def fetch_market_data():
-    url = "https://api.coingecko.com/api/v3/coins/ethereum/market_chart"  
+    url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart"  
     
     params = {
         'vs_currency': 'usd',
@@ -29,7 +29,7 @@ def fetch_market_data():
         df = pd.merge(df_prices, df_volumes, on='timestamp')
         df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
         df = df.sort_values('timestamp')
-        df.to_csv('eth.csv', index=False)
+        df.to_csv('bitcoin.csv', index=False)
         print("Market data collected and saved to market_data.csv")
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}")
