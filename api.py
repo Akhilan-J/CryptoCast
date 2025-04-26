@@ -1,39 +1,38 @@
-import requests
-import pandas as pd
-import os
+import requests, os, pandas as pd, time
 
-COINGECKO_API_KEY = os.environ.get("API_KEY")
+COINGECKO_API_KEY = os.getenv("API_KEY")          
+COIN_ID      = "bitcoin"                        
+VS_CURRENCY  = "usd"
+N_DAYS       = 90                                
+OUT_CSV      = f"{COIN_ID}.csv"
 
-def fetch_market_data():
-    url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart"  
-    
-    params = {
-        'vs_currency': 'usd',
-        'days': '30',  
-    }
+def call(endpoint: str, **params) -> dict:
+    base = f"https://api.coingecko.com/api/v3/coins/{COIN_ID}/{endpoint}"
+    headers = {"accept":"application/json"}
+    if COINGECKO_API_KEY:                      
+        headers["x-cg-demo-api-key"] = COINGECKO_API_KEY
+    r = requests.get(base, params=params, headers=headers, timeout=30)
+    r.raise_for_status()
+    return r.json()
 
-    headers = {
-        'accept': 'application/json',
-        'x-cg-demo-api-key': COINGECKO_API_KEY,
-    }
-    try:
-        print("Fetching market data from CoinGecko...")
-        response = requests.get(url, params=params)
-        response.raise_for_status()
-        data = response.json()
-        prices = data.get('prices', [])
-        volumes = data.get('total_volumes', [])
-        print(f"Data points received: {len(prices)}")
-        df_prices = pd.DataFrame(prices, columns=['timestamp', 'price'])
-        df_volumes = pd.DataFrame(volumes, columns=['timestamp', 'volume'])
-        df = pd.merge(df_prices, df_volumes, on='timestamp')
-        df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
-        df = df.sort_values('timestamp')
-        df.to_csv('bitcoin.csv', index=False)
-        print("Market data collected and saved to market_data.csv")
-    except requests.exceptions.HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-    except Exception as err:
-        print(f"An error occurred: {err}")
-if __name__ == '__main__':
-    fetch_market_data()
+def fetch():
+    mkt = call("market_chart", vs_currency=VS_CURRENCY, days=N_DAYS)
+    df = pd.DataFrame(mkt["prices"], columns=["ts","close"])
+    df["mcap"]   = [x[1] for x in mkt["market_caps"]]
+    df["volume"] = [x[1] for x in mkt["total_volumes"]]
+    df["ts"] = pd.to_datetime(df["ts"], unit="ms")
+    ohlc = call("ohlc", vs_currency=VS_CURRENCY, days=N_DAYS)
+    df_ohlc = pd.DataFrame(ohlc, columns=["ts","open","high","low","close_candle"])
+    df_ohlc["ts"] = pd.to_datetime(df_ohlc["ts"], unit="ms")
+    df["ts"] = df["ts"].dt.floor('H')
+    df_ohlc["ts"] = df_ohlc["ts"].dt.floor('H')
+    print(f"Price data: {len(df)} rows")
+    print(f"OHLC data: {len(df_ohlc)} rows")
+    df = df.merge(df_ohlc, on="ts", how="inner")
+    df = df.sort_values("ts").drop_duplicates("ts").reset_index(drop=True)
+    print(f"After merge: {len(df)} rows")
+    df.to_csv(OUT_CSV, index=False)
+    print(f" Saved {len(df):,} rows to {OUT_CSV}")
+
+if __name__ == "__main__":
+    fetch()
