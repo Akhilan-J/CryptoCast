@@ -1,6 +1,8 @@
-import numpy as np, tensorflow as tf
+# training.py
+import numpy as np
+import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers  import LSTM, Dense, Dropout
+from tensorflow.keras.layers import LSTM, Dense, Dropout
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.model_selection import train_test_split
 
@@ -16,6 +18,7 @@ model = Sequential([
     LSTM(32),
     Dense(1)
 ])
+
 model.compile(optimizer="adam", loss="mse")
 
 es = EarlyStopping(patience=6, restore_best_weights=True)
@@ -26,4 +29,4 @@ model.fit(X_train, y_train,
           epochs=100, batch_size=32,
           callbacks=[es, ck])
 
-print("✅ model_btc.h5 saved")
+print("✅ model_eth.h5 retrained and saved")

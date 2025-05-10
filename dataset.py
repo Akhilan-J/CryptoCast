@@ -20,10 +20,11 @@ print(f"Shape after processing: {df.shape}")
 print("NaN counts after processing:")
 print(df.isna().sum())
 
-feature_cols = ["close", "mcap", "volume", 
-                "open", "high", "low",
-                "sma_7", "sma_24", "rsi_14",
-                "hour_sin", "hour_cos", "log_ret"]
+feature_cols = [
+    "close", "mcap", "volume",
+    "sma_7", "sma_24", "rsi_14",
+    "hour_sin", "hour_cos", "log_ret"
+]
 
 target_col   = "close"                     
 
