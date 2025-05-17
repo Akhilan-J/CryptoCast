@@ -1,7 +1,7 @@
 import requests, os, pandas as pd, time
 
 COINGECKO_API_KEY = os.getenv("API_KEY")          
-COIN_ID      = "ethereum"                        
+COIN_ID      = "bitcoin"                        
 VS_CURRENCY  = "usd"
 N_DAYS       = 30                        
 OUT_CSV      = f"{COIN_ID}.csv"
