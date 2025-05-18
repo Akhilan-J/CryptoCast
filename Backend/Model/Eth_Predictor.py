@@ -6,6 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 from keras.models import Sequential
 from keras.layers import LSTM, Dense, Dropout
 import json
+from datetime import datetime
 
 df = pd.read_csv("ethereum.csv", parse_dates=["ts"])
 df = df.sort_values("ts")
@@ -75,11 +76,15 @@ predicted_close = inverse_pred[0, close_idx]
 
 last_actual_close = df["close"].iloc[-1]
 
+now = datetime.now()
+current_time=now.strftime("%H:%M:%S")
+
 output = {
     "last_actual_close": float(last_actual_close),
     "predicted_close": float(predicted_close),
     "change_dollars": float(predicted_close - last_actual_close),
-    "change_percent": float(((predicted_close/last_actual_close)-1)*100)
+    "change_percent": float(((predicted_close/last_actual_close)-1)*100),
+    "Time":str(current_time)
 }
 
 with open("prediction_eth.json", "w") as f:
