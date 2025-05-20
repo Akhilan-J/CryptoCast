@@ -52,17 +52,6 @@ history = model.fit(
     verbose=1
 )
 
-plt.figure(figsize=(10, 6))
-plt.plot(history.history['loss'], label='Training Loss')
-plt.plot(history.history['val_loss'], label='Validation Loss')
-plt.title('Model Loss')
-plt.ylabel('Loss')
-plt.xlabel('Epoch')
-plt.legend()
-plt.grid(True)
-plt.savefig('training_history.png')
-plt.close()
-
 last_seq = scaled_data[-SEQ_LEN:]
 last_seq = np.expand_dims(last_seq, axis=0)
 
