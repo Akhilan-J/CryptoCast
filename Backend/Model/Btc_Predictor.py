@@ -7,6 +7,7 @@ from keras.models import Sequential
 from keras.layers import LSTM, Dense, Dropout
 import json
 from datetime import datetime
+import os
 
 df = pd.read_csv("bitcoin.csv", parse_dates=["ts"])
 df = df.sort_values("ts")
@@ -69,12 +70,20 @@ now = datetime.now()
 current_time=now.strftime("%H:%M:%S")
 
 output = {
-    "last_actual_close": float(last_actual_close),
-    "predicted_close": float(predicted_close),
-    "change_dollars": float(predicted_close - last_actual_close),
-    "change_percent": float(((predicted_close/last_actual_close)-1)*100),
-    "Time":current_time
+    "currentPrice": f"${last_actual_close:,.2f}",
+    "predictedPrice": f"${predicted_close:,.2f}",
+    "priceChange": f"{'▲' if predicted_close > last_actual_close else '▼'} ${abs(predicted_close - last_actual_close):,.2f} ({((predicted_close/last_actual_close)-1)*100:.2f}%)",
+    "trend": "▲ Bullish" if predicted_close > last_actual_close else "▼ Bearish",
+    "timestamp": current_time,
+    "raw_data": {
+        "last_actual_close": float(last_actual_close),
+        "predicted_close": float(predicted_close),
+        "change_dollars": float(predicted_close - last_actual_close),
+        "change_percent": float(((predicted_close/last_actual_close)-1)*100)
+    }
 }
 
-with open("prediction_btc.json", "w") as f:
-    json.dump(output, f)
+public_dir = "../Frontend/public"
+output_path = os.path.join(public_dir, "prediction_btc.json")
+with open(output_path, "w") as f:
+    json.dump(output, f, indent=2)
