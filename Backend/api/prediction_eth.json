@@ -1,0 +1,13 @@
+{
+  "currentPrice": "$2,473.88",
+  "predictedPrice": "$2,577.10",
+  "priceChange": "\u25b2 $103.21 (4.17%)",
+  "trend": "\u25b2 Bullish",
+  "timestamp": "01:46:42",
+  "raw_data": {
+    "last_actual_close": 2473.88353397168,
+    "predicted_close": 2577.0971401435895,
+    "change_dollars": 103.2136061719093,
+    "change_percent": 4.172128750386461
+  }
+}
