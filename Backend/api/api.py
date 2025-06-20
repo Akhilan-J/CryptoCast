@@ -5,6 +5,9 @@ import json
 app=Flask(__name__)
 CORS(app)
 #this is my backend
+# wadawdawd
+# awdawd
+
 @app.route("/eth")
 def eth_output():
     with open('./prediction_eth.json', 'r') as file:
