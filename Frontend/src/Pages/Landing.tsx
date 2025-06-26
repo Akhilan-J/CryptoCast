@@ -1,10 +1,11 @@
 import Navbar from "../Components/Navbar";
 import Maint from "../Components/Maint";
 import { motion } from "framer-motion";
+import ParticleBackground from "../Components/particleBakground";
 
 function Landing() {
   return (
-    <div className="flex flex-col gap-0 overflow-x-hidden">
+    <div className="relative min-h-screen bg-black text-white overflow-hidden">
       <motion.section
         initial="hidden"
         animate="show"
@@ -20,6 +21,7 @@ function Landing() {
           />
           <div className="relative z-10">
             <Navbar />
+            <ParticleBackground />
             <Maint />
           </div>
         </div>

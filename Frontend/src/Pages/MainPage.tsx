@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CurrCard from "../Components/CurrCard";
 import PredictionCard from "../Components/PredictionCard";
 import logo from "/src/assets/CryptoCast_logo.png";
+import ParticleBackground from "../Components/particleBakground";
 
 const MainPage: React.FC = () => {
   const now = "14:25:23";
@@ -52,12 +53,15 @@ const MainPage: React.FC = () => {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gray-900 text-white p-6">
-      <div className="max-w-4xl mx-auto">
-        <img src={logo} alt="CryptoCast logo" className="h-16 mb-6" />
-        <h1 className="text-3xl font-bold mb-8 text-center">
-          Welcome To CryptoCast
-        </h1>
+    <main className="min-h-screen bg-zinc-950 text-white p-6">
+      <ParticleBackground />
+      <div className="max-w-4xl mx-auto ">
+        <div className="flex flex-col items-center justify-center mb-8 gap-4">
+          <img src={logo} alt="CryptoCast logo" className="h-16" />
+          <h1 className="text-3xl font-bold text-center">
+            Welcome To CryptoCast
+          </h1>
+        </div>
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">Ethereum Prediction</h2>
