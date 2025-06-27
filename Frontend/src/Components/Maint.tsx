@@ -36,17 +36,17 @@ const Maint = () => {
           <Button text="Go to App" />
         </Link>
       </div>
-      <div>
-        <a className="flex flex-col items-center gap-1">
-          <motion.p
-            className="text-sm/6 text-zinc-400 duration-300 group-hover:text-zinc-100"
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 100, y: 0 }}
-            transition={{ duration: 0.4, ease: "easeIn", delay: 1 }}
-          >
+      <motion.div
+        initial={{ opacity: 0, y: 0 }}
+        animate={{ opacity: 100, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeIn", delay: 1 }}
+        className="group"
+      >
+        <a className="flex flex-col items-center gap-1" href="/#intro">
+          <p className="text-sm/6 text-zinc-400 duration-300 group-hover:text-zinc-100">
             Learn more
-          </motion.p>
-          <motion.svg
+          </p>
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
             height="18"
@@ -56,19 +56,38 @@ const Maint = () => {
             stroke-width="1.5"
             stroke-linecap="round"
             stroke-linejoin="round"
-            className="lucide lucide-arrow-down text-zinc-400 duration-300 group-hover:translate-y-1.5 group-hover:text-zinc-10"
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 100, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeIn", delay: 1.2 }}
+            className="lucide lucide-arrow-down text-zinc-400 duration-300 group-hover:translate-y-1.5 group-hover:text-zinc-100"
           >
             <path d="M12 5v14"></path>
             <path d="m19 12-7 7-7-7"></path>
-          </motion.svg>
+          </svg>
         </a>
-      </div>
+      </motion.div>
     </section>
   );
 };
 
 export default Maint;
 // bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-5xl/[1.07] font-bold tracking-tight text-transparent md:text-7xl/[1.07]
+<div className="group">
+  <a className="flex flex-col items-center gap-1" href="/#intro">
+    <p className="text-sm/6 text-zinc-400 duration-300 group-hover:text-zinc-100">
+      Learn more
+    </p>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      className="lucide lucide-arrow-down text-zinc-400 duration-300 group-hover:translate-y-1.5 group-hover:text-zinc-100"
+    >
+      <path d="M12 5v14"></path>
+      <path d="m19 12-7 7-7-7"></path>
+    </svg>
+  </a>
+</div>;

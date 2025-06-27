@@ -1,8 +1,18 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 body {
   background-color: #08080a;
+}
+@keyframes pulseArrow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.pulse-arrow {
+  animation: pulseArrow 1s infinite ease-in-out;
 }

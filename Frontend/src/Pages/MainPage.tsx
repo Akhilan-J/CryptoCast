@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import CurrCard from "../Components/CurrCard";
 import PredictionCard from "../Components/PredictionCard";
 import logo from "/src/assets/CryptoCast_logo.png";
-import ParticleBackground from "../Components/particleBakground";
 
 const MainPage: React.FC = () => {
   const now = "14:25:23";
@@ -54,7 +53,6 @@ const MainPage: React.FC = () => {
 
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-6">
-      <ParticleBackground />
       <div className="max-w-4xl mx-auto ">
         <div className="flex flex-col items-center justify-center mb-8 gap-4">
           <img src={logo} alt="CryptoCast logo" className="h-16" />
@@ -129,6 +127,9 @@ const MainPage: React.FC = () => {
               <p>No data available</p>
             )}
           </div>
+          <h2 className="text-2xl font-semibold mb-4 m-8">
+            What Could have been
+          </h2>
         </section>
       </div>
     </main>

@@ -1,5 +1,3 @@
-
-
 type Props = {
   title: string;
   value: string;
@@ -22,13 +20,17 @@ function PredictCard({
   extraColor,
 }: Props) {
   return (
-    <div className="bg-[#1b2330] rounded-2xl p-6 w-[300px] shadow-md">
+    <div className="bg-bg-zinc-900 rounded-2xl p-6 shadow-lg border border-[#2a2f45] hover:shadow-2xl transition-shadow duration-300 w-[300px]">
       <div className="text-white text-base font-semibold mb-2">{title}</div>
       <div className="text-2xl font-bold" style={{ color: valueColor }}>
         {value}
       </div>
-      <div className="text-sm mt-1" style={{ color: subtextColor }}>
-        {subtext}
+      <div
+        className="text-sm mt-1 flex items-center gap-1"
+        style={{ color: subtextColor }}
+      >
+        <span className="pulse-arrow">{subtext[0]}</span>
+        <span>{subtext.slice(1)}</span>
       </div>
       <div className="text-xs text-gray-400 mt-2">Updated: {Time}</div>
       {extra && (
