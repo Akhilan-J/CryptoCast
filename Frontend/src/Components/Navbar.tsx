@@ -19,13 +19,13 @@ function navbar() {
           className="h-10 w-auto"
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 100, y: 0 }}
-          transition={{ duration: 1, ease: "easeIn", delay: 0.3 }}
+          transition={{ duration: 0.5, ease: "easeIn", delay: 0 }}
         />
         <motion.h1
           className="text-xl font-bold"
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 100, y: 0 }}
-          transition={{ duration: 1, ease: "easeIn", delay: 0.3 }}
+          transition={{ duration: 0.5, ease: "easeIn", delay: 0 }}
         >
           CryptoCast
         </motion.h1>
@@ -46,7 +46,7 @@ function navbar() {
             data-state="closed"
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 100, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeIn", delay: 0.1 }}
+            transition={{ duration: 0.5, ease: "easeIn", delay: 0 }}
           >
             <span className="absolute inset-0 overflow-hidden rounded-full">
               <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,[#50d997]0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>

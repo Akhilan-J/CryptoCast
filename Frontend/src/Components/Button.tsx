@@ -11,16 +11,13 @@ function Button({ text }: prop) {
         animate="show"
         className="grid grid-cols-3 gap-10"
       ></motion.section>
-      <motion.button
-        className="group relative rounded-full p-px text-sm/6 text-zinc-400 duration-300 hover:text-zinc-100 hover:shadow-glow"
+      <button
+        className="group relative rounded-full p-px text-sm/6 text-zinc-400 duration-300 hover:text-zinc-100 hover:shadow-glow m-5"
         type="button"
         aria-haspopup="dialog"
         aria-expanded="false"
         aria-controls="radix-:Rjlj9ukq:"
         data-state="closed"
-        initial={{ opacity: 0, y: 0 }}
-        animate={{ opacity: 100, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeIn", delay: 0.8 }}
       >
         <span className="absolute inset-0 overflow-hidden rounded-full">
           <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,[#50d997]0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
@@ -29,7 +26,7 @@ function Button({ text }: prop) {
           {text}
         </div>
         <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-[#50d997]/0 via-[#50d997]/90 to-[#50d997]/0 transition-opacity duration-500 group-hover:opacity-40"></span>
-      </motion.button>
+      </button>
     </div>
   );
 }
