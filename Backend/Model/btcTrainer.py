@@ -7,9 +7,9 @@ from keras.models import Sequential
 from keras.layers import LSTM, Dense, Dropout
 import json
 from datetime import datetime
-import os 
+import os
 
-df = pd.read_csv("ethereum.csv", parse_dates=["ts"])
+df = pd.read_csv("bitcoin.csv", parse_dates=["ts"])
 df = df.sort_values("ts")
 features = ["open", "high", "low", "close", "volume"]
 data = df[features].values
@@ -17,7 +17,7 @@ data = df[features].values
 scaler = MinMaxScaler()
 scaled_data = scaler.fit_transform(data)
 
-SEQ_LEN = 24  # 24 hours of data
+SEQ_LEN = 12 # 2 days of data 
 
 X = []
 y = [] 
@@ -84,7 +84,9 @@ output = {
 }
 
 public_dir = "../api/"
-
-output_path = os.path.join(public_dir, "prediction_eth.json")
+output_path = os.path.join(public_dir, "prediction_btc.json")
 with open(output_path, "w") as f:
     json.dump(output, f, indent=2)
+
+#Finally, save the model
+model.save("btc_predictor.h5")
