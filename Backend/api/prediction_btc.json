@@ -1,13 +1,13 @@
 {
   "currentPrice": "$107,097.59",
-  "predictedPrice": "$106,886.36",
-  "priceChange": "\u25bc $211.23 (-0.20%)",
+  "predictedPrice": "$106,161.61",
+  "priceChange": "\u25bc $935.98 (-0.87%)",
   "trend": "\u25bc Bearish",
-  "timestamp": "19:52:25",
+  "timestamp": "22:06:18",
   "raw_data": {
     "last_actual_close": 107097.58785693954,
-    "predicted_close": 106886.36212960494,
-    "change_dollars": -211.22572733460402,
-    "change_percent": -0.19722734336160563
+    "predicted_close": 106161.60733796621,
+    "change_dollars": -935.9805189733306,
+    "change_percent": -0.8739510736914147
   }
 }

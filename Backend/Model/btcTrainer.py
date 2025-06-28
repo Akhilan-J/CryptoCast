@@ -8,6 +8,7 @@ from keras.layers import LSTM, Dense, Dropout
 import json
 from datetime import datetime
 import os
+import joblib
 
 df = pd.read_csv("bitcoin.csv", parse_dates=["ts"])
 df = df.sort_values("ts")
@@ -16,6 +17,7 @@ data = df[features].values
 
 scaler = MinMaxScaler()
 scaled_data = scaler.fit_transform(data)
+joblib.dump(scaler, "btc_scaler.save")
 
 SEQ_LEN = 12 # 2 days of data 
 
