@@ -45,7 +45,7 @@ output = {
     "currentPrice": f"${last_actual_close:,.2f}",
     "predictedPrice": f"${predicted_close:,.2f}",
     "priceChange": f"{'▲' if predicted_close > last_actual_close else '▼'} ${abs(predicted_close - last_actual_close):,.2f} ({((predicted_close / last_actual_close) - 1) * 100:.2f}%)",
-    "trend": "▲ Bullish" if predicted_close > last_actual_close else "▼ Bearish",
+    "trend": "Bullish" if predicted_close > last_actual_close else "Bearish",
     "timestamp": current_time,
     "raw_data": {
         "last_actual_close": float(last_actual_close),

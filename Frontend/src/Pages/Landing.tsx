@@ -2,6 +2,7 @@ import Navbar from "../Components/Navbar";
 import Maint from "../Components/Maint";
 import { motion } from "framer-motion";
 import ParticleBackground from "../Components/particleBakground";
+import { ChartAreaInteractive } from "@/Components/Chart";
 
 function Landing() {
   return (
@@ -32,6 +33,14 @@ function Landing() {
           <div className="relative z-30">
             <Navbar />
             <Maint />
+            <motion.div
+              className="w-full max-w-5xl mx-auto px-4 py-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
+            >
+              <ChartAreaInteractive />
+            </motion.div>
           </div>
         </div>
       </div>

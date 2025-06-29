@@ -1,12 +1,15 @@
+import { sub, tr } from "framer-motion/client";
+
 type Props = {
   title: string;
   value: string;
   subtext: string;
-  Time: string;
+  Time?: string;
   valueColor: string;
   subtextColor: string;
   extra?: string;
   extraColor?: string;
+  trend?: string;
 };
 
 function PredictCard({
@@ -15,9 +18,9 @@ function PredictCard({
   valueColor,
   subtext,
   subtextColor,
-  Time,
   extra,
   extraColor,
+  trend,
 }: Props) {
   return (
     <div className="bg-bg-zinc-900 rounded-2xl p-6 shadow-lg border border-[#2a2f45] hover:shadow-2xl transition-shadow duration-300 w-[300px]">
@@ -32,10 +35,12 @@ function PredictCard({
         <span className="pulse-arrow">{subtext[0]}</span>
         <span>{subtext.slice(1)}</span>
       </div>
-      <div className="text-xs text-gray-400 mt-2">Updated: {Time}</div>
+      <p className="text-xs  mt-2" style={{ color: subtextColor }}>
+        {trend}
+      </p>
       {extra && (
         <div className="text-sm mt-4" style={{ color: extraColor }}>
-          {extra}
+          {trend}
         </div>
       )}
     </div>

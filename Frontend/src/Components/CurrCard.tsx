@@ -1,7 +1,7 @@
 type Props = {
   title: string;
   value: string;
-  subtext: string;
+  subtext?: string;
   Time: string;
   valueColor: string;
   subtextColor: string;
@@ -28,10 +28,7 @@ function CurrCard({
       <div
         className="text-sm mt-1 flex items-center gap-1"
         style={{ color: subtextColor }}
-      >
-        <span className="pulse-arrow">{subtext[0]}</span>
-        <span>{subtext.slice(1)}</span>
-      </div>
+      ></div>
 
       <div className="text-xs text-gray-400 mt-2">Updated: {Time}</div>
       {extra && (

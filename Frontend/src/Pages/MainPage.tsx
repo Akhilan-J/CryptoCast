@@ -5,7 +5,6 @@ import logo from "/src/assets/CryptoCast_logo.png";
 
 const MainPage: React.FC = () => {
   const now = "14:25:23";
-  const nextHour = "15:25:23";
 
   const [ethData, setEthData] = useState<any>(null);
   const [btcData, setBtcData] = useState<any>(null);
@@ -50,7 +49,8 @@ const MainPage: React.FC = () => {
     };
     fetchData();
   }, []);
-
+  console.log("ethData =", ethData);
+  console.log("btcData =", btcData);
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-6">
       <div className="max-w-4xl mx-auto ">
@@ -74,19 +74,18 @@ const MainPage: React.FC = () => {
                   title="Current Price"
                   value={`${ethData.currentPrice}`}
                   valueColor="#6ee7b7"
-                  subtext={`${ethData.priceChange} (${ethData.percentChange})`}
                   subtextColor="#4ade80"
-                  Time={now}
+                  Time={ethData.timestamp || now}
                 />
                 <PredictionCard
-                  title="Next Hour Prediction"
+                  title="Prediction"
                   value={`${ethData.predictedPrice}`}
                   valueColor="#60a5fa"
-                  subtext={ethData.trend}
+                  subtext={`${ethData.priceChange} `}
                   subtextColor={
-                    ethData.trend === "▲ Bullish" ? "#4ade80" : "#f87171"
+                    ethData.trend === "Bullish" ? "#4ade80" : "#f87171"
                   }
-                  Time={nextHour}
+                  trend={ethData.trend}
                 />
               </>
             ) : (
@@ -108,19 +107,18 @@ const MainPage: React.FC = () => {
                   title="Current Price"
                   value={`${btcData.currentPrice}`}
                   valueColor="#6ee7b7"
-                  subtext={`${btcData.priceChange} (${btcData.percentChange})`}
                   subtextColor="#4ade80"
-                  Time={now}
+                  Time={btcData.timestamp || now}
                 />
                 <PredictionCard
-                  title="Next Hour Prediction"
+                  title="Prediction"
                   value={`${btcData.predictedPrice}`}
                   valueColor="#60a5fa"
-                  subtext={btcData.trend}
+                  subtext={`${btcData.priceChange} `}
                   subtextColor={
-                    btcData.trend === "▲ Bullish" ? "#4ade80" : "#f87171"
+                    btcData.trend === "Bullish" ? "#4ade80" : "#f87171"
                   }
-                  Time={nextHour}
+                  trend={btcData.trend}
                 />
               </>
             ) : (
