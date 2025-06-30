@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-
+import type { ChartConfig } from "./ui/chart";
 import {
   Card,
   CardContent,
@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "./ui/card";
 import {
-  ChartConfig,
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
@@ -250,7 +249,11 @@ export function ChartAreaInteractive() {
               stroke="var(--color-desktop)"
               stackId="a"
             />
-            <ChartLegend content={<ChartLegendContent />} />
+            <ChartLegend
+              content={
+                <ChartLegendContent className="" payload={""} nameKey="" />
+              }
+            />
           </AreaChart>
         </ChartContainer>
       </CardContent>
