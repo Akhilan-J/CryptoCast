@@ -45,6 +45,7 @@ def ping_mongo():
 def record_btc():
     with open('./prediction_btc.json', 'r') as file:
         data = json.load(file)
+        print(data)
     db.btc.insert_one(data)
     return "btc data recorded"
 
@@ -57,13 +58,25 @@ def record_eth():
 
 @app.route("/get/btc", methods=["GET"])
 def get_btc():
-    data=db.btc.find_one()
-    return json.dumps(data)
+    try:
+        data = db.btc.find_one() 
+        if data and "_id" in data:
+            data["_id"] = str(data["_id"])  
+        return jsonify(data), 200
+    except Exception as e:
+        return jsonify({"status": "Failed to get data", "error": str(e)}), 500
 
 @app.route("/get/eth", methods=["GET"])
 def get_eth():
-    data=db.eth.find_one()
-    return json.dumps(data)
+    try:
+        data = db.eth.find_one()
+        print("DEBUG ETH DATA:", data)
+        if data and "_id" in data:
+            data["_id"] = str(data["_id"])
+        return jsonify(data), 200
+    except Exception as e:
+        print("ERROR in get_eth:", e)
+        return jsonify({"status": "Failed to get data", "error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)

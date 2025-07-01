@@ -13,7 +13,10 @@ const MainPage: React.FC = () => {
 
   const getEthPrice = async () => {
     try {
-      const res = await fetch("http://localhost:5000/eth");
+      const res = await fetch("http://127.0.0.1:5000/get/eth", {
+        method: "GET",
+      });
+      console.log("res =", res);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       const data = await res.json();
       return data;
@@ -25,9 +28,13 @@ const MainPage: React.FC = () => {
 
   const getBtcPrice = async () => {
     try {
-      const res = await fetch("http://localhost:5000/btc");
+      const res = await fetch("http://127.0.0.1:5000/get/btc", {
+        method: "GET",
+      });
+      console.log("res =", res);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       const data = await res.json();
+      console.log("btcData =", data);
       return data;
     } catch (err) {
       console.error("error =", err);
