@@ -7,10 +7,10 @@ import joblib
 import os
 
 
-CSV_PATH = "bitcoin.csv"
-MODEL_PATH = "btc_predictor.h5"
-SCALER_PATH = "btc_scaler.save"
-OUTPUT_PATH = "../api"
+CSV_PATH = "I:/CryptoCast/CryptoCast/Backend/Model/bitcoin.csv"
+MODEL_PATH = "I:/CryptoCast/CryptoCast/Backend/Model/btc_predictor.h5"
+SCALER_PATH = "I:/CryptoCast/CryptoCast/Backend/Model/btc_scaler.save"
+OUTPUT_PATH = "I:/CryptoCast/CryptoCast/Backend/api/prediction_btc.json"
 SEQ_LEN = 12  # Using 2 days 
 
 #Load model and scaler
@@ -55,7 +55,7 @@ output = {
     }
 }
 
-with open("../api/prediction_btc.json", "w") as f:
+with open(OUTPUT_PATH, "w") as f:
     json.dump(output, f, indent=2)
 
 
