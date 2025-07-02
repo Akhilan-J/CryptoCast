@@ -1,4 +1,4 @@
-import { sub, tr } from "framer-motion/client";
+
 
 type Props = {
   title: string;
