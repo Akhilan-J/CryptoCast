@@ -13,7 +13,7 @@ const MainPage: React.FC = () => {
 
   const getEthPrice = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/get/eth", {
+      const res = await fetch("http://127.0.0.1:5000/eth", {
         method: "GET",
       });
       console.log("res =", res);
@@ -28,7 +28,7 @@ const MainPage: React.FC = () => {
 
   const getBtcPrice = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/get/btc", {
+      const res = await fetch("http://127.0.0.1:5000/btc", {
         method: "GET",
       });
       console.log("res =", res);

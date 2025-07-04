@@ -14,3 +14,72 @@
 2025-07-01 19:11:16 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
 2025-07-01 19:11:17 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
 2025-07-01 19:11:20 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-01 19:44:11 [INFO] Starting prediction pipeline with 4-hour intervals
+2025-07-01 19:44:11 [INFO] Starting prediction cycle
+2025-07-01 19:44:11 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-01 19:44:12 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-01 19:44:13 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-01 19:44:16 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-01 19:44:19 [INFO] Successfully completed prediction cycle
+2025-07-01 19:44:19 [INFO] Next prediction cycle scheduled for: 2025-07-01 23:44:19.744466
+2025-07-01 23:44:19 [INFO] Starting prediction cycle
+2025-07-01 23:44:19 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-01 23:44:24 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-01 23:44:25 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-01 23:44:59 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-01 23:45:03 [INFO] Successfully completed prediction cycle
+2025-07-01 23:45:03 [INFO] Next prediction cycle scheduled for: 2025-07-02 03:45:03.522231
+2025-07-02 03:45:03 [INFO] Starting prediction cycle
+2025-07-02 03:45:03 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-02 03:45:07 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-02 03:45:07 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-02 03:45:30 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-02 03:45:34 [INFO] Successfully completed prediction cycle
+2025-07-02 03:45:34 [INFO] Next prediction cycle scheduled for: 2025-07-02 07:45:34.374095
+2025-07-02 15:13:33 [INFO] Starting prediction cycle
+2025-07-02 15:13:33 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-02 15:13:37 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-02 15:13:38 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-02 15:14:04 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-02 15:14:07 [INFO] Successfully completed prediction cycle
+2025-07-02 15:14:07 [INFO] Next prediction cycle scheduled for: 2025-07-02 19:14:07.930624
+2025-07-02 16:36:32 [INFO] Starting prediction pipeline with 4-hour intervals
+2025-07-02 16:36:32 [INFO] Starting prediction cycle
+2025-07-02 16:36:32 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-02 16:36:33 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-02 16:36:34 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-02 16:36:37 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-02 16:36:40 [INFO] Successfully completed prediction cycle
+2025-07-02 16:39:27 [INFO] Starting prediction pipeline with 4-hour intervals
+2025-07-02 16:39:27 [INFO] Starting prediction cycle
+2025-07-02 16:39:27 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-02 16:39:28 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-02 16:39:29 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-02 16:39:33 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-02 16:39:36 [INFO] Successfully completed prediction cycle
+2025-07-02 16:40:59 [INFO] Starting prediction pipeline with 4-hour intervals
+2025-07-02 16:40:59 [INFO] Starting prediction cycle
+2025-07-02 16:40:59 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-02 16:41:00 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-02 16:41:01 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-02 16:41:05 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-02 16:41:08 [INFO] Successfully completed prediction cycle
+2025-07-02 20:15:43 [INFO] Starting prediction pipeline with 4-hour intervals
+2025-07-02 20:15:43 [INFO] Starting prediction cycle
+2025-07-02 20:15:43 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-02 20:15:46 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-02 20:15:47 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-02 20:16:09 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-02 20:16:12 [INFO] Successfully completed prediction cycle
+2025-07-03 00:16:12 [INFO] Starting prediction cycle
+2025-07-03 00:16:12 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-03 00:16:13 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-03 00:16:14 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-03 00:16:18 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-03 00:16:22 [INFO] Successfully completed prediction cycle
+2025-07-03 04:16:22 [INFO] Starting prediction cycle
+2025-07-03 04:16:22 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-03 04:16:26 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-03 04:16:27 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-03 04:16:49 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-03 04:16:53 [INFO] Successfully completed prediction cycle
