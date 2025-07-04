@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
 from pymongo.mongo_client import MongoClient
@@ -6,7 +6,6 @@ from pymongo.server_api import ServerApi
 import os 
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
-from flask import jsonify
 import requests
 #load the environment variables
 load_dotenv()
@@ -60,7 +59,7 @@ def record_eth():
 @app.route("/btc", methods=["GET"])
 def get_btc():
     try:
-        data = db.btc.find_one() 
+        data = db.btc.find_one(sort=[("_id", -1)])
         if data and "_id" in data:
             data["_id"] = str(data["_id"])  
         return jsonify(data), 200
@@ -70,7 +69,7 @@ def get_btc():
 @app.route("/eth", methods=["GET"])
 def get_eth():
     try:
-        data = db.eth.find_one()
+        data = db.eth.find_one(sort=[("_id", -1)])
         print("DEBUG ETH DATA:", data)
         if data and "_id" in data:
             data["_id"] = str(data["_id"])
@@ -81,21 +80,32 @@ def get_eth():
     
 @app.route("/verify/btc", methods=["POST", "GET"])
 def verify_btc():
-    if requests.method == "POST":
+    if request.method == "POST":
         try:
             res = getCryptoData("bitcoin")
             if res is not None:
-                data = db.btc.find_one()
+                data = db.btc.find_one(sort=[("_id", -1)])
                 data_str = data.get("predictedPrice")
                 cleaned = data_str.replace('$', '').replace(',', '').replace('"', '')
                 cleaned_int = int(cleaned[:-3])
                 diff = res - cleaned_int
                 margin=0.02* res
                 if diff > margin:
+                    db.btcVerify.insert_one({
+                        "predictedPrice": cleaned_int,
+                        "actualPrice": res,
+                        "Result": "Wrong",
+                        "timestamp": datetime.now()
+                    })
                     return jsonify({"status": "Success", "message": "BTC data verification successfully", "result":"Wrong"}), 200
                 else:
-                    return jsonify({"status": "Success", "message": "BTC data verified successfully", "result":"Correct"}), 200
-                return jsonify({"status": "Success", "message": "BTC data verified successfully", "curr":res,"pred":cleaned_int,"diff":diff}), 200
+                    db.btcVerify.insert_one({
+                        "predictedPrice": cleaned_int,
+                        "actualPrice": res,
+                        "Result": "Correct",
+                        "timestamp": datetime.now()
+                    })
+                    return jsonify({"status": "Success", "message": "BTC data verification successfully", "result":"Correct"}), 200
             else:
                 return jsonify({"status": "Failed to verify data", "error": "getCryptoData failed"}), 404
         except Exception as e:
@@ -105,19 +115,31 @@ def verify_btc():
 
 @app.route("/verify/eth", methods=["POST", "GET"])
 def verify_eth():
-    if requests.method == "POST":
+    if request.method == "POST":
         try:
             res = getCryptoData("ethereum")
             if res is not None:
-                data = db.eth.find_one()
+                data = db.eth.find_one(sort=[("_id", -1)])
                 data_str = data.get("predictedPrice")
                 cleaned = data_str.replace('$', '').replace(',', '').replace('"', '')
                 cleaned_int = int(cleaned[:-3])
                 diff = abs(res - cleaned_int)
                 margin=0.02* res
                 if diff > margin:
-                    return jsonify({"status": "Success", "message": "ETH data verification successfully", "result":"Wrong"}), 200
+                    db.ethVerify.insert_one({
+                        "predictedPrice": cleaned_int,
+                        "actualPrice": res,
+                        "Result": "Wrong",
+                        "timestamp": datetime.now()
+                    })
+                    return jsonify({"status": "Success", "message": "ETH data verified successfully", "result":"Wrong"}), 200
                 else:
+                    db.ethVerify.insert_one({
+                        "predictedPrice": cleaned_int,
+                        "actualPrice": res,
+                        "Result": "Correct",
+                        "timestamp": datetime.now()
+                    })
                     return jsonify({"status": "Success", "message": "ETH data verified successfully", "result":"Correct"}), 200
             else:
                 return jsonify({"status": "Failed to verify data", "error": "getCryptoData failed"}), 404

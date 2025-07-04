@@ -16,7 +16,6 @@ const MainPage: React.FC = () => {
       const res = await fetch("http://127.0.0.1:5000/eth", {
         method: "GET",
       });
-      console.log("res =", res);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       const data = await res.json();
       return data;
@@ -31,10 +30,8 @@ const MainPage: React.FC = () => {
       const res = await fetch("http://127.0.0.1:5000/btc", {
         method: "GET",
       });
-      console.log("res =", res);
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       const data = await res.json();
-      console.log("btcData =", data);
       return data;
     } catch (err) {
       console.error("error =", err);
@@ -43,21 +40,25 @@ const MainPage: React.FC = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [eth, btc] = await Promise.all([getEthPrice(), getBtcPrice()]);
-        setEthData(eth);
-        setBtcData(btc);
-        setLoading(false);
-      } catch (err: any) {
-        setError(err.message);
-        setLoading(false);
-      }
+    const interval = setInterval(() => {
+      const fetchData = async () => {
+        try {
+          const [eth, btc] = await Promise.all([getEthPrice(), getBtcPrice()]);
+          setEthData(eth);
+          setBtcData(btc);
+          console.log("we are doing this ");
+          setLoading(false);
+        } catch (err: any) {
+          setError(err.message);
+          setLoading(false);
+        }
+      };
+      fetchData();
+    }, 1000000);
+    return () => {
+      clearInterval(interval);
     };
-    fetchData();
   }, []);
-  console.log("ethData =", ethData);
-  console.log("btcData =", btcData);
   return (
     <main className="min-h-screen bg-zinc-950 text-white p-6">
       <div className="max-w-4xl mx-auto ">
