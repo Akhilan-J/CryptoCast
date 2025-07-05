@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import CurrCard from "../Components/CurrCard";
 import PredictionCard from "../Components/PredictionCard";
 import logo from "/src/assets/CryptoCast_logo.png";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const MainPage: React.FC = () => {
   const now = "14:25:23";
@@ -38,23 +39,24 @@ const MainPage: React.FC = () => {
       throw err;
     }
   };
-
-  useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const [eth, btc] = await Promise.all([getEthPrice(), getBtcPrice()]);
+      setEthData(eth);
+      setBtcData(btc);
+      console.log("we are doing this ");
+      setLoading(false);
+    } catch (err: any) {
+      setError(err.message);
+      setLoading(false);
+    }
+  };
+  useMemo(() => {
+    fetchData();
     const interval = setInterval(() => {
-      const fetchData = async () => {
-        try {
-          const [eth, btc] = await Promise.all([getEthPrice(), getBtcPrice()]);
-          setEthData(eth);
-          setBtcData(btc);
-          console.log("we are doing this ");
-          setLoading(false);
-        } catch (err: any) {
-          setError(err.message);
-          setLoading(false);
-        }
-      };
       fetchData();
-    }, 1000000);
+      console.log("hehehehah");
+    }, 100000);
     return () => {
       clearInterval(interval);
     };
@@ -73,7 +75,13 @@ const MainPage: React.FC = () => {
           <h2 className="text-2xl font-semibold mb-4">Ethereum Prediction</h2>
           <div className="flex flex-wrap gap-4">
             {loading ? (
-              <p>Loading Ethereum data...</p>
+              <MoonLoader
+                color="#ffffff"
+                loading={loading}
+                size={30}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
             ) : error ? (
               <p className="text-red-400">Error loading data: {error}</p>
             ) : ethData && ethData.currentPrice ? (
@@ -106,7 +114,13 @@ const MainPage: React.FC = () => {
           <h2 className="text-2xl font-semibold mb-4">Bitcoin Prediction</h2>
           <div className="flex flex-wrap gap-4">
             {loading ? (
-              <p>Loading Bitcoin data...</p>
+              <MoonLoader
+                color="#ffffff"
+                loading={loading}
+                size={30}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
             ) : error ? (
               <p className="text-red-400">Error loading data: {error}</p>
             ) : btcData && btcData.currentPrice ? (
