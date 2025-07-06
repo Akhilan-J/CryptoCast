@@ -3,6 +3,8 @@ import CurrCard from "../Components/CurrCard";
 import PredictionCard from "../Components/PredictionCard";
 import logo from "/src/assets/CryptoCast_logo.png";
 import MoonLoader from "react-spinners/MoonLoader";
+import ParticleBackground from "../Components/particleBakground";
+import Verify from "@/Components/Verify";
 
 const MainPage: React.FC = () => {
   const now = "14:25:23";
@@ -11,6 +13,35 @@ const MainPage: React.FC = () => {
   const [btcData, setBtcData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [btcVerified, setBtcVerified] = useState<any>(null);
+  const [ethVerified, setEthVerified] = useState<any>(null);
+
+  const getBtcVerified = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/verify/btc", {
+        method: "GET",
+      });
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      console.error("error =", err);
+      throw err;
+    }
+  };
+  const getEthVerified = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/verify/eth", {
+        method: "GET",
+      });
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      console.error("error =", err);
+      throw err;
+    }
+  };
 
   const getEthPrice = async () => {
     try {
@@ -41,10 +72,20 @@ const MainPage: React.FC = () => {
   };
   const fetchData = async () => {
     try {
-      const [eth, btc] = await Promise.all([getEthPrice(), getBtcPrice()]);
+      const [eth, btc, ethVerified1, btcVerified1] = await Promise.all([
+        getEthPrice(),
+        getBtcPrice(),
+        getEthVerified(),
+        getBtcVerified(),
+      ]);
+      console.log("eth", eth);
+      console.log("btc", btc);
+      console.log("ethVerified1", ethVerified1);
+      console.log("btcVerified1", btcVerified1);
       setEthData(eth);
       setBtcData(btc);
-      console.log("we are doing this ");
+      setEthVerified(ethVerified1);
+      setBtcVerified(btcVerified1);
       setLoading(false);
     } catch (err: any) {
       setError(err.message);
@@ -53,10 +94,14 @@ const MainPage: React.FC = () => {
   };
   useMemo(() => {
     fetchData();
+    console.log("btcVerified", btcVerified);
+    console.log("ethVerified", ethVerified);
+    console.log("btcData", btcData);
+    console.log("ethData", ethData);
     const interval = setInterval(() => {
       fetchData();
       console.log("hehehehah");
-    }, 100000);
+    }, 600000);
     return () => {
       clearInterval(interval);
     };
@@ -70,7 +115,7 @@ const MainPage: React.FC = () => {
             Welcome To CryptoCast
           </h1>
         </div>
-
+        <ParticleBackground />
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-4">Ethereum Prediction</h2>
           <div className="flex flex-wrap gap-4">
@@ -147,9 +192,15 @@ const MainPage: React.FC = () => {
               <p>No data available</p>
             )}
           </div>
-          <h2 className="text-2xl font-semibold mb-4 m-8">
+          <h2 className="text-2xl font-semibold mb-4 mt-8">
             What Could have been
           </h2>
+          <div className="flex flex-wrap gap-4">
+            <Verify Crypto="Bitcoin" Correct={btcVerified?.Result} />
+          </div>
+          <div className="flex flex-wrap gap-4 mb-4 mt-8">
+            <Verify Crypto="Ethereum" Correct={ethVerified?.Result} />
+          </div>
         </section>
       </div>
     </main>

@@ -79,7 +79,7 @@ body {
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.552 0.016 285.938);
   --chart-1: #50d997;
-  --chart-2: oklch(69.918% 0.15976 278.279);
+  --chart-2: #cc00ff;
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);

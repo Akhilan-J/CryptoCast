@@ -56,6 +56,7 @@ def record_eth():
     except Exception as e:
         return jsonify({"status": "Failed to record data", "error": str(e)}), 500
 
+#Gets the latest data from the database
 @app.route("/btc", methods=["GET"])
 def get_btc():
     try:
@@ -78,6 +79,7 @@ def get_eth():
         print("ERROR in get_eth:", e)
         return jsonify({"status": "Failed to get data", "error": str(e)}), 500
     
+#Verifies the data by comparing the predicted price with the actual price
 @app.route("/verify/btc", methods=["POST", "GET"])
 def verify_btc():
     if request.method == "POST":
@@ -111,7 +113,13 @@ def verify_btc():
         except Exception as e:
             return jsonify({"status": "Failed to verify data", "error": str(e)}), 500
     else:
-        return jsonify({"status": "Method not allowed", "error": "Use POST method to verify data"}), 405
+        try:
+            data = db.btcVerify.find_one(sort=[("_id", -1)])
+            if data and "_id" in data:
+                data["_id"] = str(data["_id"])
+            return jsonify(data), 200
+        except Exception as e:
+            return jsonify({"status": "Failed to get data", "error": str(e)}),
 
 @app.route("/verify/eth", methods=["POST", "GET"])
 def verify_eth():
@@ -146,7 +154,13 @@ def verify_eth():
         except Exception as e:
             return jsonify({"status": "Failed to verify data", "error": str(e)}), 500
     else:
-        return jsonify({"status": "Method not allowed", "error": "Use POST method to verify data"}), 405
+        try:
+            data = db.ethVerify.find_one(sort=[("_id", -1)])
+            if data and "_id" in data:
+                data["_id"] = str(data["_id"])
+            return jsonify(data), 200
+        except Exception as e:
+            return jsonify({"status": "Failed to get data", "error": str(e)}), 500
 
 
 if __name__ == "__main__":
