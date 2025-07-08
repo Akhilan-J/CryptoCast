@@ -69,7 +69,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function ChartAreaInteractive() {
-  const [timeRange, setTimeRange] = React.useState("14d");
+  const [timeRange, setTimeRange] = React.useState("17d");
 
   const filteredData = React.useMemo(() => {
     const latestDate = new Date(chartData[chartData.length - 1].date);

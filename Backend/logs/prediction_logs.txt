@@ -112,3 +112,72 @@
 2025-07-05 22:23:30 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
 2025-07-05 22:23:33 [INFO] Successfully recorded verified data
 2025-07-05 22:23:33 [INFO] Successfully completed prediction cycle
+2025-07-06 02:23:33 [INFO] Starting prediction cycle
+2025-07-06 02:23:33 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-06 02:23:37 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-06 02:23:38 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-06 02:23:58 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-06 02:24:01 [INFO] Successfully recorded verified data
+2025-07-06 02:24:01 [INFO] Successfully completed prediction cycle
+2025-07-06 14:17:29 [INFO] Starting prediction cycle
+2025-07-06 14:17:29 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-06 14:17:33 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-06 14:17:33 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-06 14:17:53 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-06 14:17:57 [INFO] Successfully recorded verified data
+2025-07-06 14:17:57 [INFO] Successfully completed prediction cycle
+2025-07-06 18:17:57 [INFO] Starting prediction cycle
+2025-07-06 18:17:57 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-06 18:18:00 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-06 18:18:01 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-06 18:18:21 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-06 18:18:24 [INFO] Successfully recorded verified data
+2025-07-06 18:18:24 [INFO] Successfully completed prediction cycle
+2025-07-06 22:18:24 [INFO] Starting prediction cycle
+2025-07-06 22:18:24 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-06 22:18:28 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-06 22:18:29 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-06 22:18:53 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-06 22:18:57 [INFO] Successfully recorded verified data
+2025-07-06 22:18:57 [INFO] Successfully completed prediction cycle
+2025-07-07 02:18:57 [INFO] Starting prediction cycle
+2025-07-07 02:18:57 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-07 02:18:57 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-07 02:18:58 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-07 02:19:02 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-07 02:19:05 [INFO] Successfully recorded verified data
+2025-07-07 02:19:05 [INFO] Successfully completed prediction cycle
+2025-07-07 10:41:26 [INFO] Starting prediction cycle
+2025-07-07 10:41:26 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-07 10:41:29 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-07 10:41:30 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-07 10:41:52 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-07 10:41:58 [ERROR] Error in prediction cycle: HTTPConnectionPool(host='127.0.0.1', port=5000): Max retries exceeded with url: /verify/btc (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001E1E2F9EC70>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-07-07 11:41:58 [INFO] Starting prediction cycle
+2025-07-07 11:41:58 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-07 11:41:58 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-07 11:41:59 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-07 11:42:03 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-07 11:42:06 [INFO] Successfully recorded verified data
+2025-07-07 11:42:06 [INFO] Successfully completed prediction cycle
+2025-07-07 15:42:07 [INFO] Starting prediction cycle
+2025-07-07 15:42:07 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-07 15:42:11 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-07 15:42:12 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-07 15:44:48 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-07 15:44:52 [INFO] Successfully recorded verified data
+2025-07-07 15:44:52 [INFO] Successfully completed prediction cycle
+2025-07-07 19:44:52 [INFO] Starting prediction cycle
+2025-07-07 19:44:52 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-07 19:44:56 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-07 19:44:56 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-07 19:45:20 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-07 19:45:24 [INFO] Successfully recorded verified data
+2025-07-07 19:45:24 [INFO] Successfully completed prediction cycle
+2025-07-07 23:45:24 [INFO] Starting prediction cycle
+2025-07-07 23:45:24 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_btc.py
+2025-07-07 23:45:27 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/api_eth.py
+2025-07-07 23:45:28 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py
+2025-07-07 23:47:26 [INFO] Running script: I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py
+2025-07-07 23:47:32 [INFO] Successfully recorded verified data
+2025-07-07 23:47:32 [INFO] Successfully completed prediction cycle
