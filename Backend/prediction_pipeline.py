@@ -24,7 +24,6 @@ def run_script(script_path):
 def main():
     # Convert 4 hours to seconds
 
-    
     logging.info(f"Starting prediction pipeline with 4-hour intervals")
 
     
@@ -41,10 +40,16 @@ def main():
             run_script("I:/CryptoCast/CryptoCast/Backend/Model/btcPredictor.py")
             run_script("I:/CryptoCast/CryptoCast/Backend/Model/ethPredictor.py")
 
-            # To record the data in the database
-            res1 = requests.post("http://127.0.0.1:5000/record/btc")
-            res2 = requests.post("http://127.0.0.1:5000/record/eth")
-            
+            # To record the verified data in the database
+            res1 = requests.post("http://127.0.0.1:5000/verify/btc")
+            res2 = requests.post("http://127.0.0.1:5000/verify/eth")
+
+            #To record the actual data in the database
+            res3 = requests.post("http://127.0.0.1:5000/record/btc")
+            res4 = requests.post("http://127.0.0.1:5000/record/eth")
+
+            logging.info("Successfully recorded verified data")
+            print(f"[{datetime.now()}] Recorded verified BTC and ETH data")
             logging.info("Successfully completed prediction cycle")
             print(f"[{datetime.now()}] Recorded BTC and ETH data")
             print(f"[{datetime.now()}] Prediction cycle completed successfully")

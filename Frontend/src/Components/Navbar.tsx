@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 function navbar() {
   return (
-    <nav className="flex justify-between items-center px-6 py-4">
+    <nav className="flex items-center justify-between w-full px-6 py-4 md:px-8">
       <div className="flex items-center gap-2 ml-40">
         <motion.section
           initial="hidden"

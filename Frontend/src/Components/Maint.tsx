@@ -13,7 +13,7 @@ const Maint = () => {
         className="grid grid-cols-3 gap-10"
       ></motion.section>
       <motion.h1
-        className="bg-gradient-to-br from-white to-zinc-400 bg-clip-text text-5xl/[1.07] font-bold tracking-tight text-transparent md:text-7xl/[1.07]"
+        className="bg-gradient-to-br from-white to-zinc-400 bg-clip-text text-5xl/[1.07] font-bold tracking-tight text-transparent md:text-7xl/[1.07] mt-10"
         initial={{ opacity: 0, y: 0, scale: 0.9 }}
         animate={{ opacity: 100, y: 0, scale: 1 }}
         transition={{
@@ -30,7 +30,7 @@ const Maint = () => {
       </motion.h1>
       <TextFade
         direction="up"
-        className="pt-0 pb-5 flex-col flex justify-center items-center space-y-0"
+        className="pt-0 pb-1 flex-col flex justify-center items-center space-y-0"
       >
         <p className="mt-6 text-lg font-medium text-zinc-400 md:text-xl">
           Real-time machine learning predictions for top cryptocurrencies. Stay
@@ -49,12 +49,12 @@ const Maint = () => {
         transition={{
           duration: 0.5,
           ease: "easeIn",
-          delay: 0.3,
+          delay: 0.55,
           staggerChildren: 1,
         }}
         className="group"
       >
-        <a className="flex flex-col items-center gap-1" href="/#intro">
+        <a className="flex flex-col items-center " href="#intro">
           <p className="text-sm/6 text-zinc-400 duration-300 group-hover:text-zinc-100">
             Learn more
           </p>

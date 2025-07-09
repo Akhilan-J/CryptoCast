@@ -1,16 +1,16 @@
 const particleConfig = {
   particles: {
     number: {
-      value: 57,
+      value: 1000000,
       density: {
         enable: true,
-        area: 800,
+        area: 1000000,
       },
     },
     color: { value: "#ffffff" },
     shape: {
       type: "circle",
-      stroke: { width: 0, color: "#000000" },
+      stroke: { width: 10, color: "#000000" },
       polygon: { nb_sides: 5 },
       image: { src: "img/github.svg", width: 100, height: 100 },
     },
@@ -20,7 +20,7 @@ const particleConfig = {
       anim: { enable: true, speed: 1, opacity_min: 0, sync: false },
     },
     size: {
-      value: 3,
+      value: 10,
       random: true,
       anim: { enable: false, speed: 4, size_min: 0.3, sync: false },
     },
@@ -38,7 +38,7 @@ const particleConfig = {
       random: true,
       straight: false,
       outModes: "out",
-      bounce: false,
+      bounce: true,
       attract: { enable: false, rotateX: 600, rotateY: 600 },
     },
   },
