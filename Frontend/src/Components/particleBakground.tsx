@@ -77,7 +77,7 @@ const ParticleBackground = () => {
           direction: MoveDirection.none,
           enable: true,
           outModes: {
-            default: OutMode.out,
+            default: OutMode.bounce,
           },
           random: true,
           speed: 1,
@@ -110,7 +110,13 @@ const ParticleBackground = () => {
         id="tsparticles"
         particlesLoaded={particlesLoaded}
         options={options}
-        style={{ position: "absolute", inset: 0, zIndex: -10 }}
+        style={{
+          position: "sticky",
+          inset: 0,
+          zIndex: -50,
+          width: "50%",
+          height: "10%",
+        }}
       />
     );
   }

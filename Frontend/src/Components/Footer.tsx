@@ -2,7 +2,7 @@ import { Link } from "react-router";
 
 function Footer() {
   return (
-    <footer className="isolate mx-auto max-w-7xl p-6 pb-12 pt-16 lg:px-8 bg-zinc-950 text-white">
+    <footer className="isolate mx-auto max-w-7xl p-6 pb-12 pt-16 lg:px-8 text-white">
       <div className="border-t border-white/10 pt-4 md:flex md:items-center md:justify-between">
         <div className="flex justify-center space-x-6 md:order-2">
           <a
@@ -27,7 +27,7 @@ function Footer() {
             rel="noopener noreferrer"
             aria-label="Follow on GitHub"
             className="group flex h-6 w-6 items-center justify-center text-zinc-400 transition-colors hover:text-zinc-300"
-            href="https://github.com/cryptocast"
+            href="https://github.com/Akhilan-J"
           >
             <svg
               fill="currentColor"
@@ -46,13 +46,13 @@ function Footer() {
           </div>
           <div className="order-1 flex gap-4 md:order-2">
             <Link
-              to="/privacy"
+              to="/Privacy"
               className="transition-colors duration-200 hover:text-zinc-300"
             >
               Privacy Policy
             </Link>
             <Link
-              to="/terms"
+              to="/Terms"
               className="transition-colors duration-200 hover:text-zinc-300"
             >
               Terms of Use

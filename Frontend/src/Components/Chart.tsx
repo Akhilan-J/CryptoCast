@@ -174,14 +174,14 @@ export function ChartAreaInteractive() {
               type="monotone"
               fill="none"
               stroke="var(--color-mobile)"
-              strokeWidth={1}
+              strokeWidth={3}
             />
             <Area
               dataKey="desktop"
               type="monotone"
               fill="none"
               stroke="var(--color-desktop)"
-              strokeWidth={1}
+              strokeWidth={3}
             />
             <ChartLegend
               content={
