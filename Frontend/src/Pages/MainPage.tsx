@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useMemo } from "react";
-import CurrCard from "../Components/CurrCard";
-import PredictionCard from "../Components/PredictionCard";
+import React, { useState, useMemo } from "react";
+
 import logo from "/src/assets/CryptoCast_logo.png";
 import MoonLoader from "react-spinners/MoonLoader";
 import ParticleBackground from "../Components/particleBakground";
 import Verify from "@/Components/Verify";
+import Ucard from "@/Components/Ucard";
+import Pcard from "@/Components/Pcard";
 
 const MainPage: React.FC = () => {
   const now = "14:25:23";
@@ -94,30 +95,29 @@ const MainPage: React.FC = () => {
   };
   useMemo(() => {
     fetchData();
-    console.log("btcVerified", btcVerified);
-    console.log("ethVerified", ethVerified);
-    console.log("btcData", btcData);
-    console.log("ethData", ethData);
+
     const interval = setInterval(() => {
       fetchData();
-      console.log("hehehehah");
+      console.log("");
     }, 600000);
     return () => {
       clearInterval(interval);
     };
   }, []);
   return (
-    <main className="min-h-screen bg-zinc-950 text-white p-6">
-      <div className="max-w-4xl mx-auto ">
+    <main className="min-h-screen bg-zinc-950 text-white p-6 relative">
+      <ParticleBackground />
+      <div className="max-w-4xl mx-auto relative z-10">
         <div className="flex flex-col items-center justify-center mb-8 gap-4">
           <img src={logo} alt="CryptoCast logo" className="h-16" />
-          <h1 className="text-3xl font-bold text-center">
+          <h1 className=" bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent text-3xl font-bold text-center">
             Welcome To CryptoCast
           </h1>
         </div>
-        <ParticleBackground />
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Ethereum Prediction</h2>
+          <h2 className=" bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent text-2xl font-semibold mb-4">
+            Ethereum Prediction
+          </h2>
           <div className="flex flex-wrap gap-4">
             {loading ? (
               <MoonLoader
@@ -131,14 +131,15 @@ const MainPage: React.FC = () => {
               <p className="text-red-400">Error loading data: {error}</p>
             ) : ethData && ethData.currentPrice ? (
               <>
-                <CurrCard
+                <Ucard
                   title="Current Price"
                   value={`${ethData.currentPrice}`}
                   valueColor="#6ee7b7"
                   subtextColor="#4ade80"
                   Time={ethData.timestamp || now}
+                  subtext=""
                 />
-                <PredictionCard
+                <Pcard
                   title="Prediction"
                   value={`${ethData.predictedPrice}`}
                   valueColor="#60a5fa"
@@ -156,7 +157,9 @@ const MainPage: React.FC = () => {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold mb-4">Bitcoin Prediction</h2>
+          <h2 className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent text-2xl font-semibold mb-4">
+            Bitcoin Prediction
+          </h2>
           <div className="flex flex-wrap gap-4">
             {loading ? (
               <MoonLoader
@@ -170,14 +173,15 @@ const MainPage: React.FC = () => {
               <p className="text-red-400">Error loading data: {error}</p>
             ) : btcData && btcData.currentPrice ? (
               <>
-                <CurrCard
+                <Ucard
                   title="Current Price"
                   value={`${btcData.currentPrice}`}
                   valueColor="#6ee7b7"
                   subtextColor="#4ade80"
+                  subtext=""
                   Time={btcData.timestamp || now}
                 />
-                <PredictionCard
+                <Pcard
                   title="Prediction"
                   value={`${btcData.predictedPrice}`}
                   valueColor="#60a5fa"
@@ -192,7 +196,7 @@ const MainPage: React.FC = () => {
               <p>No data available</p>
             )}
           </div>
-          <h2 className="text-2xl font-semibold mb-4 mt-8">
+          <h2 className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent text-3xl font-bold mb-4 mt-8">
             What Could have been
           </h2>
           <div className="flex flex-wrap gap-4">

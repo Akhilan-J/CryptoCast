@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import ParticleBackground from "../Components/particleBakground";
-
+import Ucard from "@/Components/Ucard";
 function Terms() {
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
