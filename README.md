@@ -253,3 +253,4 @@ For support, email support@cryptocast.com or join our Discord server.
 ---
 
 **⚠️ Disclaimer**: This application is for educational purposes only. Cryptocurrency investments carry significant risk. Always do your own research and consult with financial advisors before making investment decisions.
+
