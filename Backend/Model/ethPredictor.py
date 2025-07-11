@@ -8,10 +8,11 @@ import joblib
 import os
 
 
-CSV_PATH = "I:/CryptoCast/CryptoCast/Backend/Model/ethereum.csv"
-MODEL_PATH = "I:/CryptoCast/CryptoCast/Backend/Model/eth_predictor.h5"
-SCALER_PATH = "I:/CryptoCast/CryptoCast/Backend/Model/eth_scaler.save"
-OUTPUT_PATH = "I:/CryptoCast/CryptoCast/Backend/api/prediction_eth.json"
+CSV_PATH = "/app/ethereum.csv"
+MODEL_PATH = "/app/eth_predictor.h5"
+SCALER_PATH = "/app/eth_scaler.save"
+OUTPUT_PATH = "/app/shared/prediction_eth.json"
+
 SEQ_LEN = 12  # Using 2 days 
 
 #Load model and scaler

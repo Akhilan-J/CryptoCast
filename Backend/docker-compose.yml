@@ -1,0 +1,13 @@
+volumes:
+  shared-data:
+
+services:
+  api:
+    build: ./api
+    volumes:
+      - shared-data:/app/shared
+
+  model_worker:
+    build: ./model
+    volumes:
+      - shared-data:/app/shared
