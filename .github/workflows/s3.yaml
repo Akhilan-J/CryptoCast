@@ -44,7 +44,7 @@ jobs:
         uses: chetan/invalidate-cloudfront-action@master
         with:
           distribution: ${{ secrets.AWS_DISTRIBUTION_PRODUCTION }}
-          paths: "/*"
+          paths: '/*'
         env:
           AWS_REGION: "us-east-2"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
