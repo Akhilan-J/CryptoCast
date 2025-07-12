@@ -1,24 +1,21 @@
-name: Deploy to EC2
+name: Remote ssh command
 
 on:
   push:
     branches:
-      - main
+      - "release"
 
 jobs:
-  deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Add SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_KEY }}" > ~/.ssh/github-ec2
-          chmod 600 ~/.ssh/github-ec2
-
-      - name: Deploy to EC2
-        run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/github-ec2 ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} 'bash ~/deploy/deploy.sh'
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            cd deploy
+            sudo bash deploy.sh
