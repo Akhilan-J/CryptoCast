@@ -1,6 +1,10 @@
 jobs:
   build:
     runs-on: ubuntu-latest
+on:
+  push:
+    branches:
+      - main
 
     strategy:
       matrix:
