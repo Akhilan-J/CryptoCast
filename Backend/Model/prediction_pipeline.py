@@ -41,12 +41,12 @@ def main():
             run_script("/app/ethPredictor.py")
 
             # To record the verified data in the database
-            res1 = requests.post("http://api:5000/verify/btc")
-            res2 = requests.post("http://api:5000/verify/eth")
+            res1 = requests.post("https://api.cryptocast.live/verify/btc")
+            res2 = requests.post("https://api.cryptocast.live/verify/eth")
 
             # To record the data in the database
-            res3 = requests.post("http://api:5000/record/btc")
-            res4 = requests.post("http://api:5000/record/eth")
+            res3 = requests.post("https://api.cryptocast.live/record/btc")
+            res4 = requests.post("https://api.cryptocast.live/record/eth")
 
 
             logging.info("Successfully recorded verified data")
