@@ -39,7 +39,7 @@ def home():
 @app.route("/record/btc", methods=["POST"])
 def record_btc():
     try:
-        with open('./prediction_btc.json', 'r') as file:
+        with open('/app/shared/prediction_btc.json', 'r') as file:
             data = json.load(file)
         db.btc.insert_one(data)
         return jsonify({"status": "Success", "message": "BTC data recorded successfully"}), 200
@@ -49,7 +49,7 @@ def record_btc():
 @app.route("/record/eth", methods=["POST"])
 def record_eth():
     try:
-        with open('./prediction_eth.json', 'r') as file:
+        with open('/app/shared/prediction_eth.json', 'r') as file:
             data = json.load(file)
         db.eth.insert_one(data)
         return jsonify({"status": "Success", "message": "ETH data recorded successfully"}), 200

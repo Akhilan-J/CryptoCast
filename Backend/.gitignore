@@ -1,7 +1,3 @@
 venv
 bitcoin.csv
 ethereum.csv
-btc_predictor.h5
-eth_predictor.h5
-btc_scaler.save
-eth_scaler.save

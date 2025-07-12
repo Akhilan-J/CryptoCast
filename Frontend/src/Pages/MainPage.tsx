@@ -19,7 +19,7 @@ const MainPage: React.FC = () => {
 
   const getBtcVerified = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/verify/btc", {
+      const res = await fetch("https://api.cryptocast.live/verify/btc", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -32,7 +32,7 @@ const MainPage: React.FC = () => {
   };
   const getEthVerified = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/verify/eth", {
+      const res = await fetch("https://api.cryptocast.live/verify/eth", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -46,7 +46,7 @@ const MainPage: React.FC = () => {
 
   const getEthPrice = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/eth", {
+      const res = await fetch("https://api.cryptocast.live/eth", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -60,7 +60,7 @@ const MainPage: React.FC = () => {
 
   const getBtcPrice = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/btc", {
+      const res = await fetch("https://api.cryptocast.live/btc", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -79,10 +79,6 @@ const MainPage: React.FC = () => {
         getEthVerified(),
         getBtcVerified(),
       ]);
-      console.log("eth", eth);
-      console.log("btc", btc);
-      console.log("ethVerified1", ethVerified1);
-      console.log("btcVerified1", btcVerified1);
       setEthData(eth);
       setBtcData(btc);
       setEthVerified(ethVerified1);

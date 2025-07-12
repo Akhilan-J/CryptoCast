@@ -1,0 +1,15 @@
+volumes:
+  shared-data:
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "5000:5000"
+    volumes:
+      - shared-data:/app/shared
+
+  model_worker:
+    build: ./model
+    volumes:
+      - shared-data:/app/shared

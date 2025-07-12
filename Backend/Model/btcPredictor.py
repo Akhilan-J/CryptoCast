@@ -7,10 +7,10 @@ import joblib
 import os
 
 
-CSV_PATH = "I:/CryptoCast/CryptoCast/Backend/Model/bitcoin.csv"
-MODEL_PATH = "I:/CryptoCast/CryptoCast/Backend/Model/btc_predictor.h5"
-SCALER_PATH = "I:/CryptoCast/CryptoCast/Backend/Model/btc_scaler.save"
-OUTPUT_PATH = "I:/CryptoCast/CryptoCast/Backend/api/prediction_btc.json"
+CSV_PATH = "/app/bitcoin.csv"
+MODEL_PATH = "/app/btc_predictor.h5"
+SCALER_PATH = "/app/btc_scaler.save"
+OUTPUT_PATH = "/app/shared/prediction_btc.json"
 SEQ_LEN = 12  # Using 2 days 
 
 #Load model and scaler
