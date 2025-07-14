@@ -1,9 +1,8 @@
-import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import ParticleBackground from "../Components/particleBakground";
-import Ucard from "@/Components/Ucard";
+import { Link } from "react-router";
 function Terms() {
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
@@ -173,9 +172,11 @@ function Terms() {
                 <span className="absolute inset-0 overflow-hidden rounded-full">
                   <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(34,197,94,0.6)_0%,rgba(34,197,94,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
                 </span>
-                <div className="relative z-10 rounded-full bg-zinc-950 px-4 py-1.5 ring-1 ring-white/10">
-                  Start Forecasting
-                </div>
+                <Link to="/Main">
+                  <div className="relative z-10 rounded-full bg-zinc-950 px-4 py-1.5 ring-1 ring-white/10">
+                    Start Forecasting
+                  </div>
+                </Link>
                 <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-green-400/0 via-green-400/90 to-green-400/0 transition-opacity duration-500 group-hover:opacity-40"></span>
               </button>
             </div>
