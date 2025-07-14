@@ -9,8 +9,6 @@ import Pcard from "@/Components/Pcard";
 import { Link } from "react-router";
 
 const MainPage: React.FC = () => {
-  const now = "14:25:23";
-
   const [ethData, setEthData] = useState<any>(null);
   const [btcData, setBtcData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -18,9 +16,19 @@ const MainPage: React.FC = () => {
   const [btcVerified, setBtcVerified] = useState<any>(null);
   const [ethVerified, setEthVerified] = useState<any>(null);
 
+  const convertToLocalTime = (utcTimestamp: string) => {
+    const date = new Date(utcTimestamp);
+    return date.toLocaleTimeString("en-US", {
+      hour12: true,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+  };
+
   const getBtcVerified = async () => {
     try {
-      const res = await fetch("https://api.cryptocast.live/verify/btc", {
+      const res = await fetch("http://localhost:5000/verify/btc", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -33,7 +41,7 @@ const MainPage: React.FC = () => {
   };
   const getEthVerified = async () => {
     try {
-      const res = await fetch("https://api.cryptocast.live/verify/eth", {
+      const res = await fetch("http://localhost:5000/verify/eth", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -47,7 +55,7 @@ const MainPage: React.FC = () => {
 
   const getEthPrice = async () => {
     try {
-      const res = await fetch("https://api.cryptocast.live/eth", {
+      const res = await fetch("http://localhost:5000/eth", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -61,7 +69,7 @@ const MainPage: React.FC = () => {
 
   const getBtcPrice = async () => {
     try {
-      const res = await fetch("https://api.cryptocast.live/btc", {
+      const res = await fetch("http://localhost:5000/btc", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -80,6 +88,25 @@ const MainPage: React.FC = () => {
         getEthVerified(),
         getBtcVerified(),
       ]);
+
+      console.log("old time eth ", eth.timestamp_display);
+      console.log("old time btc ", btc.timestamp_display);
+      console.log("eth object:", eth); // Add this to debug
+      console.log("btc object:", btc); // Add this to debug
+
+      // Check for different possible timestamp property names
+      if (eth && (eth.timestamp || eth.timestamp_display)) {
+        const timestampToConvert = eth.timestamp || eth.timestamp_display;
+        eth.timestamp_display = convertToLocalTime(timestampToConvert);
+      }
+
+      if (btc && (btc.timestamp || btc.timestamp_display)) {
+        const timestampToConvert = btc.timestamp || btc.timestamp_display;
+        btc.timestamp_display = convertToLocalTime(timestampToConvert);
+      }
+
+      console.log("new time eth ", eth.timestamp_display);
+      console.log("new time btc ", btc.timestamp_display);
       setEthData(eth);
       setBtcData(btc);
       setEthVerified(ethVerified1);
@@ -134,7 +161,7 @@ const MainPage: React.FC = () => {
                   value={`${ethData.currentPrice}`}
                   valueColor="#6ee7b7"
                   subtextColor="#4ade80"
-                  Time={ethData.timestamp || now}
+                  Time={ethData.timestamp_display}
                   subtext=""
                 />
                 <Pcard
@@ -177,7 +204,7 @@ const MainPage: React.FC = () => {
                   valueColor="#6ee7b7"
                   subtextColor="#4ade80"
                   subtext=""
-                  Time={btcData.timestamp || now}
+                  Time={btcData.timestamp_display}
                 />
                 <Pcard
                   title="Prediction"

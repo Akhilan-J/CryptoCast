@@ -41,8 +41,15 @@ def record_btc():
     try:
         with open('/app/shared/prediction_btc.json', 'r') as file:
             data = json.load(file)
-        db.btc.insert_one(data)
-        return jsonify({"status": "Success", "message": "BTC data recorded successfully"}), 200
+        result = db.btc.insert_one(data)
+        data['_id'] = str(result.inserted_id)
+
+        return jsonify({
+            "status": "Success",
+            "message": "BTC data recorded successfully",
+            "data": data
+        }), 200
+
     except Exception as e:
         return jsonify({"status": "Failed to record data", "error": str(e)}), 500
 
@@ -51,8 +58,13 @@ def record_eth():
     try:
         with open('/app/shared/prediction_eth.json', 'r') as file:
             data = json.load(file)
-        db.eth.insert_one(data)
-        return jsonify({"status": "Success", "message": "ETH data recorded successfully"}), 200
+        result = db.eth.insert_one(data)
+        data['_id'] = str(result.inserted_id)
+        return jsonify({
+            "status": "Success",
+            "message": "ETH data recorded successfully",
+            "data": data
+        }), 200
     except Exception as e:
         return jsonify({"status": "Failed to record data", "error": str(e)}), 500
 
