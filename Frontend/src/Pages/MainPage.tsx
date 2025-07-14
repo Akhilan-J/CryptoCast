@@ -6,6 +6,7 @@ import ParticleBackground from "../Components/particleBakground";
 import Verify from "@/Components/Verify";
 import Ucard from "@/Components/Ucard";
 import Pcard from "@/Components/Pcard";
+import { Link } from "react-router";
 
 const MainPage: React.FC = () => {
   const now = "14:25:23";
@@ -94,7 +95,6 @@ const MainPage: React.FC = () => {
 
     const interval = setInterval(() => {
       fetchData();
-      console.log("");
     }, 600000);
     return () => {
       clearInterval(interval);
@@ -105,7 +105,9 @@ const MainPage: React.FC = () => {
       <ParticleBackground />
       <div className="max-w-4xl mx-auto relative z-10">
         <div className="flex flex-col items-center justify-center mb-8 gap-4">
-          <img src={logo} alt="CryptoCast logo" className="h-16" />
+          <Link to="/">
+            <img src={logo} alt="CryptoCast logo" className="h-16" />
+          </Link>
           <h1 className=" bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent text-3xl font-bold text-center">
             Welcome To CryptoCast
           </h1>

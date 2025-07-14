@@ -1,6 +1,10 @@
 import { Link } from "react-router";
 
 function Footer() {
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <footer className="isolate mx-auto max-w-7xl p-6 pb-12 pt-16 lg:px-8 text-white">
       <div className="border-t border-white/10 pt-4 md:flex md:items-center md:justify-between">
@@ -48,12 +52,14 @@ function Footer() {
             <Link
               to="/Privacy"
               className="transition-colors duration-200 hover:text-zinc-300"
+              onClick={handleLinkClick}
             >
               Privacy Policy
             </Link>
             <Link
               to="/Terms"
               className="transition-colors duration-200 hover:text-zinc-300"
+              onClick={handleLinkClick}
             >
               Terms of Use
             </Link>

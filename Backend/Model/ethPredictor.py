@@ -40,15 +40,29 @@ predicted_close = inverse_pred[0, close_idx]
 
 last_actual_close = df["close"].iloc[-1]
 
+def get_day_suffix(day):
+    if 11 <= day <= 13:
+        return 'th'
+    elif day % 10 == 1:
+        return 'st'
+    elif day % 10 == 2:
+        return 'nd'
+    elif day % 10 == 3:
+        return 'rd'
+    else:
+        return 'th'
+
 now = datetime.now()
-current_time = now.strftime("%H:%M:%S")
+day = now.day
+suffix = get_day_suffix(day)
+formatted = now.strftime(f"%A, %B {day}{suffix}, at %H:%M")
 
 output = {
     "currentPrice": f"${last_actual_close:,.2f}",
     "predictedPrice": f"${predicted_close:,.2f}",
     "priceChange": f"{'▲' if predicted_close > last_actual_close else '▼'} ${abs(predicted_close - last_actual_close):,.2f} ({((predicted_close / last_actual_close) - 1) * 100:.2f}%)",
     "trend": "Bullish" if predicted_close > last_actual_close else "Bearish",
-    "timestamp": current_time,
+    "timestamp": formatted,
     "raw_data": {
         "last_actual_close": float(last_actual_close),
         "predicted_close": float(predicted_close),
