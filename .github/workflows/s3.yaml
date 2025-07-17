@@ -72,9 +72,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - run: cd Frontend
-      - run: npm install
-      - run: npm run build
+      - run: cd Frontend && npm install && npm run build
+      # - run: npm run build
       - uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --follow-symlinks --delete
