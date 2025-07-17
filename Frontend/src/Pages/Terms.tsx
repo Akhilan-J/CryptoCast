@@ -19,7 +19,7 @@ function Terms() {
               <div className="text-center ">
                 <h1 className="text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
                   <span className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent">
-                    Terms of Service Test
+                    Terms of Service 
                   </span>
                 </h1>
                 <p className="mt-6 text-lg text-zinc-400/80 max-w-2xl mx-auto">
