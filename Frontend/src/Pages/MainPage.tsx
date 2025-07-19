@@ -28,7 +28,7 @@ const MainPage: React.FC = () => {
 
   const getBtcVerified = async () => {
     try {
-      const res = await fetch("http://localhost:5000/verify/btc", {
+      const res = await fetch("https://api.cryptocast.live/verify/btc", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -41,7 +41,7 @@ const MainPage: React.FC = () => {
   };
   const getEthVerified = async () => {
     try {
-      const res = await fetch("http://localhost:5000/verify/eth", {
+      const res = await fetch("https://api.cryptocast.live/verify/eth", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -55,7 +55,7 @@ const MainPage: React.FC = () => {
 
   const getEthPrice = async () => {
     try {
-      const res = await fetch("http://localhost:5000/eth", {
+      const res = await fetch("https://api.cryptocast.live/eth", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -69,7 +69,7 @@ const MainPage: React.FC = () => {
 
   const getBtcPrice = async () => {
     try {
-      const res = await fetch("http://localhost:5000/btc", {
+      const res = await fetch("https://api.cryptocast.live/btc", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -222,13 +222,29 @@ const MainPage: React.FC = () => {
             )}
           </div>
           <h2 className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent text-3xl font-bold mb-4 mt-8">
-            What Could have been
+            Prediction Results
           </h2>
-          <div className="flex flex-wrap gap-4">
-            <Verify Crypto="Bitcoin" Correct={btcVerified?.Result} />
+          <div className="flex flex-wrap gap-4 mb-4">
+            <Verify
+              crypto="Bitcoin"
+              predictionDate={"today"}
+              predictionPrice={100}
+              actualPrice={100}
+              errorPercent={0}
+              profitSim={1}
+              directionCorrect={true}
+            />
           </div>
-          <div className="flex flex-wrap gap-4 mb-4 mt-8">
-            <Verify Crypto="Ethereum" Correct={ethVerified?.Result} />
+          <div className="flex flex-wrap gap-4 mb-4  ">
+            <Verify
+              crypto="Ethereum"
+              predictionDate={"today"}
+              predictionPrice={100}
+              actualPrice={100}
+              errorPercent={0}
+              profitSim={1}
+              directionCorrect={true}
+            />
           </div>
         </section>
       </div>

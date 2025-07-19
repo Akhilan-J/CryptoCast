@@ -100,24 +100,30 @@ def verify_btc():
             if res is not None:
                 data = db.btc.find_one(sort=[("_id", -1)])
                 data_str = data.get("predictedPrice")
+                prediction_date = data.get("timestamp")
                 cleaned = data_str.replace('$', '').replace(',', '').replace('"', '')
                 cleaned_int = int(cleaned[:-3])
                 diff = res - cleaned_int
                 margin=0.02* res
+                errorPercent=abs(((cleaned_int-res)/res)*100)
                 if diff > margin:
                     db.btcVerify.insert_one({
                         "predictedPrice": cleaned_int,
+                        "predictionDate": prediction_date,
                         "actualPrice": res,
-                        "Result": "Wrong",
-                        "timestamp": datetime.now()
+                        "errorPercent":errorPercent,
+                        "profitSim": cleaned_int - res,
+                        "directionCorrect": False
                     })
                     return jsonify({"status": "Success", "message": "BTC data verification successfully", "result":"Wrong"}), 200
                 else:
                     db.btcVerify.insert_one({
                         "predictedPrice": cleaned_int,
+                        "predictionDate": prediction_date,
                         "actualPrice": res,
-                        "Result": "Correct",
-                        "timestamp": datetime.now()
+                        "errorPercent":errorPercent,
+                        "profitSim": cleaned_int - res,
+                        "directionCorrect": True
                     })
                     return jsonify({"status": "Success", "message": "BTC data verification successfully", "result":"Correct"}), 200
             else:
@@ -141,24 +147,31 @@ def verify_eth():
             if res is not None:
                 data = db.eth.find_one(sort=[("_id", -1)])
                 data_str = data.get("predictedPrice")
+                prediction_date = data.get("timestamp")
                 cleaned = data_str.replace('$', '').replace(',', '').replace('"', '')
                 cleaned_int = int(cleaned[:-3])
                 diff = abs(res - cleaned_int)
                 margin=0.02* res
+                errorPercent=abs(((cleaned_int-res)/res)*100)
                 if diff > margin:
                     db.ethVerify.insert_one({
                         "predictedPrice": cleaned_int,
+                        "predictionDate": prediction_date,
                         "actualPrice": res,
-                        "Result": "Wrong",
-                        "timestamp": datetime.now()
+                        "errorPercent":errorPercent,
+                        "profitSim": cleaned_int - res,
+                        "directionCorrect":False
+                        
                     })
                     return jsonify({"status": "Success", "message": "ETH data verified successfully", "result":"Wrong"}), 200
                 else:
                     db.ethVerify.insert_one({
                         "predictedPrice": cleaned_int,
+                        "predictionDate": prediction_date,
                         "actualPrice": res,
-                        "Result": "Correct",
-                        "timestamp": datetime.now()
+                        "errorPercent":errorPercent,
+                        "profitSim": cleaned_int - res,
+                        "directionCorrect":True
                     })
                     return jsonify({"status": "Success", "message": "ETH data verified successfully", "result":"Correct"}), 200
             else:
