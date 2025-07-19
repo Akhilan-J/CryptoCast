@@ -1,18 +1,7 @@
-# CryptoCast 🚀
+# CryptoCast 
 
 A full-stack cryptocurrency price prediction application that uses machine learning to forecast Bitcoin and Ethereum prices. Built with React/TypeScript frontend, Flask backend, and TensorFlow/Keras ML models.
-
-## 🌟 Features
-
-- **Real-time Cryptocurrency Data**: Live price feeds for Bitcoin and Ethereum
-- **ML-Powered Predictions**: LSTM neural networks trained on historical price data
-- **Interactive Dashboard**: Beautiful React-based UI with real-time charts
-- **Automated Pipeline**: Scheduled predictions every 4 hours
-- **Data Persistence**: MongoDB integration for storing predictions
-- **Prediction Verification**: Automatic accuracy tracking against actual prices
-- **Dockerized Deployment**: Easy setup with Docker Compose
-
-## 🏗️ Architecture
+##  Architecture
 
 ```
 CryptoCast/
@@ -29,7 +18,7 @@ CryptoCast/
 └── docker-compose.yml
 ```
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Frontend
 
@@ -55,7 +44,7 @@ CryptoCast/
 - **Automated retraining** pipeline
 - **Real-time prediction** updates
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -81,7 +70,7 @@ CryptoCast/
    CLUSTER=your_database_name
    ```
 
-### 🐳 Docker Deployment (Recommended)
+###  Docker Deployment (Recommended)
 
 **Build and run with Docker Compose:**
 
@@ -99,12 +88,7 @@ docker-compose logs -f
 docker-compose down
 ```
 
-**Services will be available at:**
-
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000
-
-### 🔧 Development Setup
+###  Development Setup
 
 #### Frontend Development
 
@@ -145,7 +129,7 @@ cd ..
 python prediction_pipeline.py
 ```
 
-## 🤖 Machine Learning Pipeline
+##  Machine Learning Pipeline
 
 The ML pipeline consists of several automated processes:
 
@@ -173,7 +157,7 @@ The ML pipeline consists of several automated processes:
 - **Performance Metrics**: 2% margin of error tolerance
 - **Continuous Learning**: Models can be retrained based on performance
 
-## 📊 API Endpoints
+##  API Endpoints
 
 ### Prediction Endpoints
 
@@ -187,37 +171,13 @@ The ML pipeline consists of several automated processes:
 - `POST /verify/btc` - Verify Bitcoin prediction accuracy
 - `POST /verify/eth` - Verify Ethereum prediction accuracy
 
-## 🔍 Monitoring and Logs
+##  Monitoring and Logs
 
 - **Prediction Logs**: `Backend/logs/prediction_logs.txt`
 - **Docker Logs**: `docker-compose logs [service_name]`
 - **Flask Debug Mode**: Enabled in development
 
-## 🛡️ Security Considerations
-
-- Environment variables for sensitive data
-- CORS properly configured
-- Input validation on all endpoints
-- Rate limiting recommended for production
-
-## 🚀 Deployment
-
-### Production Deployment
-
-1. **Environment Variables**: Set all required environment variables
-2. **Database Setup**: Ensure MongoDB is properly configured
-3. **SSL/TLS**: Configure HTTPS for production
-4. **Monitoring**: Set up application monitoring
-5. **Backup**: Regular database backups
-
-### Scaling Considerations
-
-- **Load Balancing**: Multiple backend instances
-- **Database Sharding**: For large datasets
-- **CDN**: For static frontend assets
-- **Caching**: Redis for API response caching
-
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -225,7 +185,7 @@ The ML pipeline consists of several automated processes:
 4. Add tests if applicable
 5. Submit a pull request
 
-## 📈 Future Enhancements
+##  Future Enhancements
 
 - [ ] Support for additional cryptocurrencies
 - [ ] Advanced technical indicators
@@ -235,20 +195,13 @@ The ML pipeline consists of several automated processes:
 - [ ] Portfolio tracking features
 - [ ] Social sentiment analysis
 
-## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - CoinGecko API for cryptocurrency data
 - TensorFlow/Keras for ML framework
 - React and Vite communities
 - MongoDB for database services
-
-## 📞 Support
-
-For support, email support@cryptocast.com or join our Discord server.
 
 ---
 
