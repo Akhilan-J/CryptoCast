@@ -40,7 +40,10 @@ function Landing() {
       <section className="mx-auto max-w-7xl p-6 py-16 md:py-24 lg:px-8">
         <div className="grid  justify-between gap-5 md:grid-cols-1 md:gap-8 lg:grid-cols-2">
           <div className="justify-start pr-8 text-4xl/[1.07] font-bold tracking-tight md:pr-16 md:text-5xl/[1.07] mt-10">
-            <span className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent">
+            <span
+              id="intro"
+              className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent"
+            >
               Who said crypto forecasting has to be a guessing game?
             </span>
           </div>
@@ -67,9 +70,9 @@ function Landing() {
               You watch the trends we crunch the numbers.
             </span>
           </div>
-          <div className="justify-start pr-8 text-4xl/[1.07] font-bold tracking-tight md:pr-16 md:text-5xl/[1.07] mt-10">
-            <span className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent">
-              Stop refreshing. Start predicting.
+          <div className="justify-start pr-8 text-4xl/[1.07] font-bold tracking-tight md:pr-16 md:text-5xl/[1.07]  mt-7">
+            <span className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent ">
+              Stop refreshing <br /> Start predicting.
             </span>
           </div>
         </div>

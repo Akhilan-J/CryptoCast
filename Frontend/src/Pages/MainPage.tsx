@@ -221,6 +221,8 @@ const MainPage: React.FC = () => {
               <p>No data available</p>
             )}
           </div>
+        </section>
+        <section className="flex flex-col">
           <h2 className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent text-3xl font-bold mb-4 mt-8">
             Prediction Results
           </h2>
@@ -234,8 +236,6 @@ const MainPage: React.FC = () => {
               profitSim={1}
               directionCorrect={true}
             />
-          </div>
-          <div className="flex flex-wrap gap-4 mb-4  ">
             <Verify
               crypto="Ethereum"
               predictionDate={"today"}
