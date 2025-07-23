@@ -9,14 +9,22 @@ import Pcard from "@/Components/Pcard";
 import { Link } from "react-router";
 
 const MainPage: React.FC = () => {
-  const now = "14:25:23";
-
   const [ethData, setEthData] = useState<any>(null);
   const [btcData, setBtcData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [btcVerified, setBtcVerified] = useState<any>(null);
   const [ethVerified, setEthVerified] = useState<any>(null);
+
+  const convertToLocalTime = (utcTimestamp: string) => {
+    const date = new Date(utcTimestamp);
+    return date.toLocaleTimeString("en-US", {
+      hour12: true,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+  };
 
   const getBtcVerified = async () => {
     try {
@@ -80,6 +88,25 @@ const MainPage: React.FC = () => {
         getEthVerified(),
         getBtcVerified(),
       ]);
+
+      console.log("old time eth ", eth.timestamp_display);
+      console.log("old time btc ", btc.timestamp_display);
+      console.log("eth object:", eth); // Add this to debug
+      console.log("btc object:", btc); // Add this to debug
+
+      // Check for different possible timestamp property names
+      if (eth && (eth.timestamp || eth.timestamp_display)) {
+        const timestampToConvert = eth.timestamp || eth.timestamp_display;
+        eth.timestamp_display = convertToLocalTime(timestampToConvert);
+      }
+
+      if (btc && (btc.timestamp || btc.timestamp_display)) {
+        const timestampToConvert = btc.timestamp || btc.timestamp_display;
+        btc.timestamp_display = convertToLocalTime(timestampToConvert);
+      }
+
+      console.log("new time eth ", eth.timestamp_display);
+      console.log("new time btc ", btc.timestamp_display);
       setEthData(eth);
       setBtcData(btc);
       setEthVerified(ethVerified1);
@@ -134,7 +161,7 @@ const MainPage: React.FC = () => {
                   value={`${ethData.currentPrice}`}
                   valueColor="#6ee7b7"
                   subtextColor="#4ade80"
-                  Time={ethData.timestamp || now}
+                  Time={ethData.timestamp_display}
                   subtext=""
                 />
                 <Pcard
@@ -177,7 +204,7 @@ const MainPage: React.FC = () => {
                   valueColor="#6ee7b7"
                   subtextColor="#4ade80"
                   subtext=""
-                  Time={btcData.timestamp || now}
+                  Time={btcData.timestamp_display}
                 />
                 <Pcard
                   title="Prediction"
@@ -194,14 +221,30 @@ const MainPage: React.FC = () => {
               <p>No data available</p>
             )}
           </div>
+        </section>
+        <section className="flex flex-col">
           <h2 className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent text-3xl font-bold mb-4 mt-8">
-            What Could have been
+            Prediction Results
           </h2>
-          <div className="flex flex-wrap gap-4">
-            <Verify Crypto="Bitcoin" Correct={btcVerified?.Result} />
-          </div>
-          <div className="flex flex-wrap gap-4 mb-4 mt-8">
-            <Verify Crypto="Ethereum" Correct={ethVerified?.Result} />
+          <div className="flex flex-wrap gap-4 mb-4">
+            <Verify
+              crypto="Bitcoin"
+              predictionDate={"today"}
+              predictionPrice={100}
+              actualPrice={100}
+              errorPercent={0}
+              profitSim={1}
+              directionCorrect={true}
+            />
+            <Verify
+              crypto="Ethereum"
+              predictionDate={"today"}
+              predictionPrice={100}
+              actualPrice={100}
+              errorPercent={0}
+              profitSim={1}
+              directionCorrect={true}
+            />
           </div>
         </section>
       </div>

@@ -71,24 +71,5 @@ last_actual_close = df["close"].iloc[-1]
 now = datetime.now()
 current_time=now.strftime("%H:%M:%S")
 
-output = {
-    "currentPrice": f"${last_actual_close:,.2f}",
-    "predictedPrice": f"${predicted_close:,.2f}",
-    "priceChange": f"{'▲' if predicted_close > last_actual_close else '▼'} ${abs(predicted_close - last_actual_close):,.2f} ({((predicted_close/last_actual_close)-1)*100:.2f}%)",
-    "trend": "▲ Bullish" if predicted_close > last_actual_close else "▼ Bearish",
-    "timestamp": current_time,
-    "raw_data": {
-        "last_actual_close": float(last_actual_close),
-        "predicted_close": float(predicted_close),
-        "change_dollars": float(predicted_close - last_actual_close),
-        "change_percent": float(((predicted_close/last_actual_close)-1)*100)
-    }
-}
-
-public_dir = "../api/"
-
-output_path = os.path.join(public_dir, "prediction_eth.json")
-with open(output_path, "w") as f:
-    json.dump(output, f, indent=2)
 #Finally, save the model
 model.save("eth_predictor.h5")

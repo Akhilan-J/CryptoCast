@@ -130,10 +130,7 @@ function Privacy() {
               <p>
                 If you have any questions about this Privacy Policy, please
                 contact us at
-                <span className="text-zinc-200">
-                  {" "}
-                  akhilanjeyaraj1@gmail.com
-                </span>
+                <span className="text-zinc-200"> CryptoCast1@gmail.com</span>
               </p>
             </div>
           </motion.div>
