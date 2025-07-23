@@ -111,6 +111,8 @@ const MainPage: React.FC = () => {
       setBtcData(btc);
       setEthVerified(ethVerified1);
       setBtcVerified(btcVerified1);
+      console.log("eth verified:", ethVerified1);
+      console.log("btc verified:", btcVerified1);
       setLoading(false);
     } catch (err: any) {
       setError(err.message);
@@ -226,24 +228,24 @@ const MainPage: React.FC = () => {
           <h2 className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent text-3xl font-bold mb-4 mt-8">
             Prediction Results
           </h2>
-          <div className="flex flex-wrap gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <Verify
               crypto="Bitcoin"
-              predictionDate={"today"}
-              predictionPrice={100}
-              actualPrice={100}
-              errorPercent={0}
-              profitSim={1}
-              directionCorrect={true}
+              predictionDate={btcVerified?.predictionDate.slice(0, -10)}
+              predictionTime={btcData?.timestamp_display}
+              predictionPrice={btcVerified?.predictedPrice}
+              actualPrice={btcVerified?.actualPrice}
+              errorPercent={btcVerified?.errorPercent}
+              directionCorrect={btcVerified?.directionCorrect}
             />
             <Verify
               crypto="Ethereum"
-              predictionDate={"today"}
-              predictionPrice={100}
-              actualPrice={100}
-              errorPercent={0}
-              profitSim={1}
-              directionCorrect={true}
+              predictionDate={ethVerified?.predictionDate.slice(0, -10)}
+              predictionTime={ethData?.timestamp_display}
+              predictionPrice={ethVerified?.predictedPrice}
+              actualPrice={ethVerified?.actualPrice}
+              errorPercent={ethVerified?.errorPercent}
+              directionCorrect={ethVerified?.directionCorrect}
             />
           </div>
         </section>
