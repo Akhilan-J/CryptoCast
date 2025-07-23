@@ -3,7 +3,7 @@ name: Remote ssh command
 on:
   push:
     branches:
-      - "release"
+      - "main"
 
 jobs:
   build:
@@ -18,4 +18,4 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             cd deploy
-            sudo bash deploy.sh
+            bash deploy.sh
