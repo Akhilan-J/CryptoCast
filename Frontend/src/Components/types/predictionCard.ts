@@ -8,6 +8,7 @@ type PredictionCardProps = {
   extra?: string;
   extraColor?: string;
   trend?: string;
+  errorP: number;
 };
 
 export type { PredictionCardProps };

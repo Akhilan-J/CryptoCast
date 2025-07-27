@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { type PredictionCardProps } from "./types/predictionCard";
+import Indicator from "./Indicator";
 function Pcard({
   title,
   value,
@@ -11,13 +12,15 @@ function Pcard({
   extra,
   extraColor,
   trend,
+  errorP,
 }: PredictionCardProps) {
   return (
     <Card className="pt-0 w-[300px] ">
-      <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
-        <div className="grid flex-1 gap-1">
-          <CardTitle>{title}</CardTitle>
-        </div>
+      <CardHeader className="flex items-center justify-between gap-2 space-y-0 border-b py-5 sm:flex-row">
+        <CardTitle>{title}</CardTitle>
+        <span className="flex text-xs text-zinc-400">
+          <Indicator errorP={errorP} />
+        </span>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <div className="text-2xl font-bold" style={{ color: valueColor }}>
