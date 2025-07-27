@@ -7,6 +7,7 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
 import requests
+from bson.json_util import dumps
 #load the environment variables
 load_dotenv()
 
@@ -187,6 +188,36 @@ def verify_eth():
         except Exception as e:
             return jsonify({"status": "Failed to get data", "error": str(e)}), 500
 
+# Gets the last 10 records of volatility for BTC and ETH
+@app.route("/volatility/btc", methods=["GET"])
+def get_volatility_btc():
+    try:
+        data = db.btcVerify.find().sort("_id", -1).limit(10)
+        list_data = list(data)
+        if not list_data:
+            return jsonify({"status": "No data found"}), 404
+        total_error=0
+        for item in list_data:
+            total_error += item.get("errorPercent")
+        average_error = total_error / len(list_data)
+        return jsonify({"status": "Success", "average_error": average_error}), 200
+    except Exception as e:
+        return jsonify({"status": "Failed to get data", "error": str(e)}), 500
+
+@app.route("/volatility/eth", methods=["GET"])
+def get_volatility_eth():
+    try:
+        data = db.ethVerify.find().sort("_id", -1).limit(10)
+        list_data = list(data)
+        if not list_data:
+            return jsonify({"status": "No data found"}), 404
+        total_error=0
+        for item in list_data:
+            total_error += item.get("errorPercent")
+        average_error = total_error / len(list_data)
+        return jsonify({"status": "Success", "average_error": average_error}), 200
+    except Exception as e:
+        return jsonify({"status": "Failed to get data", "error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
