@@ -86,7 +86,7 @@ const MainPage: React.FC = () => {
 
   const getEthError = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/volatility/eth", {
+      const res = await fetch("https://api.cryptocast.live/volatility/eth", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -99,7 +99,7 @@ const MainPage: React.FC = () => {
   };
   const getBtcError = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/volatility/btc", {
+      const res = await fetch("https://api.cryptocast.live/volatility/btc", {
         method: "GET",
       });
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
@@ -138,10 +138,6 @@ const MainPage: React.FC = () => {
       setBtcVerified(btcVerified1);
       setEthError(ethError);
       setBtcError(btcError);
-      console.log("btcVerified", btcVerified1);
-      console.log("ethVerified", ethVerified1);
-      console.log("ethError", ethError);
-      console.log("btcError", btcError);
       setLoading(false);
     } catch (err: any) {
       setError(err.message);
