@@ -7,6 +7,7 @@ import Verify from "@/Components/Verify";
 import Ucard from "@/Components/Ucard";
 import Pcard from "@/Components/Pcard";
 import { Link } from "react-router";
+import Indicator from "@/Components/Indicator";
 
 const MainPage: React.FC = () => {
   const [ethData, setEthData] = useState<any>(null);
@@ -15,6 +16,8 @@ const MainPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [btcVerified, setBtcVerified] = useState<any>(null);
   const [ethVerified, setEthVerified] = useState<any>(null);
+  const [ethError, setEthError] = useState<any>(null);
+  const [btcError, setBtcError] = useState<any>(null);
 
   const convertToLocalTime = (utcTimestamp: string) => {
     const date = new Date(utcTimestamp);
@@ -80,19 +83,44 @@ const MainPage: React.FC = () => {
       throw err;
     }
   };
+
+  const getEthError = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/volatility/eth", {
+        method: "GET",
+      });
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      console.error("error =", err);
+      throw err;
+    }
+  };
+  const getBtcError = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/volatility/btc", {
+        method: "GET",
+      });
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      const data = await res.json();
+      return data;
+    } catch (err) {
+      console.error("error =", err);
+      throw err;
+    }
+  };
   const fetchData = async () => {
     try {
-      const [eth, btc, ethVerified1, btcVerified1] = await Promise.all([
-        getEthPrice(),
-        getBtcPrice(),
-        getEthVerified(),
-        getBtcVerified(),
-      ]);
-
-      console.log("old time eth ", eth.timestamp_display);
-      console.log("old time btc ", btc.timestamp_display);
-      console.log("eth object:", eth); // Add this to debug
-      console.log("btc object:", btc); // Add this to debug
+      const [eth, btc, ethVerified1, btcVerified1, ethError, btcError] =
+        await Promise.all([
+          getEthPrice(),
+          getBtcPrice(),
+          getEthVerified(),
+          getBtcVerified(),
+          getEthError(),
+          getBtcError(),
+        ]);
 
       // Check for different possible timestamp property names
       if (eth && (eth.timestamp || eth.timestamp_display)) {
@@ -104,15 +132,16 @@ const MainPage: React.FC = () => {
         const timestampToConvert = btc.timestamp || btc.timestamp_display;
         btc.timestamp_display = convertToLocalTime(timestampToConvert);
       }
-
-      console.log("new time eth ", eth.timestamp_display);
-      console.log("new time btc ", btc.timestamp_display);
       setEthData(eth);
       setBtcData(btc);
       setEthVerified(ethVerified1);
       setBtcVerified(btcVerified1);
-      console.log("eth verified:", ethVerified1);
-      console.log("btc verified:", btcVerified1);
+      setEthError(ethError);
+      setBtcError(btcError);
+      console.log("btcVerified", btcVerified1);
+      console.log("ethVerified", ethVerified1);
+      console.log("ethError", ethError);
+      console.log("btcError", btcError);
       setLoading(false);
     } catch (err: any) {
       setError(err.message);
@@ -167,7 +196,8 @@ const MainPage: React.FC = () => {
                   subtext=""
                 />
                 <Pcard
-                  title="Prediction"
+                  errorP={ethError.average_error}
+                  title="Prediction "
                   value={`${ethData.predictedPrice}`}
                   valueColor="#60a5fa"
                   subtext={`${ethData.priceChange} `}
@@ -209,6 +239,7 @@ const MainPage: React.FC = () => {
                   Time={btcData.timestamp_display}
                 />
                 <Pcard
+                  errorP={btcError.average_error}
                   title="Prediction"
                   value={`${btcData.predictedPrice}`}
                   valueColor="#60a5fa"
@@ -228,25 +259,47 @@ const MainPage: React.FC = () => {
           <h2 className="bg-gradient-to-br from-white to-zinc-500 bg-clip-text text-transparent text-3xl font-bold mb-4 mt-8">
             Prediction Results
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <Verify
-              crypto="Bitcoin"
-              predictionDate={btcVerified?.predictionDate.slice(0, -10)}
-              predictionTime={btcData?.timestamp_display}
-              predictionPrice={btcVerified?.predictedPrice}
-              actualPrice={btcVerified?.actualPrice}
-              errorPercent={btcVerified?.errorPercent}
-              directionCorrect={btcVerified?.directionCorrect}
-            />
-            <Verify
-              crypto="Ethereum"
-              predictionDate={ethVerified?.predictionDate.slice(0, -10)}
-              predictionTime={ethData?.timestamp_display}
-              predictionPrice={ethVerified?.predictedPrice}
-              actualPrice={ethVerified?.actualPrice}
-              errorPercent={ethVerified?.errorPercent}
-              directionCorrect={ethVerified?.directionCorrect}
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2  mb-4">
+            {loading ? (
+              <div className="col-span-2 flex justify-center">
+                <MoonLoader
+                  color="#ffffff"
+                  loading={loading}
+                  size={30}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              </div>
+            ) : error ? (
+              <div className="col-span-2 flex justify-center">
+                <p className="text-red-400">Error loading data: {error}</p>
+              </div>
+            ) : btcVerified && ethVerified ? (
+              <>
+                <Verify
+                  crypto="Bitcoin"
+                  predictionDate={btcVerified?.predictionDate.slice(0, -22)}
+                  predictionTime={btcData?.timestamp_display}
+                  predictionPrice={btcVerified?.predictedPrice}
+                  actualPrice={btcVerified?.actualPrice}
+                  errorPercent={btcVerified?.errorPercent}
+                  directionCorrect={btcVerified?.directionCorrect}
+                />
+                <Verify
+                  crypto="Ethereum"
+                  predictionDate={ethVerified?.predictionDate.slice(0, -17)}
+                  predictionTime={ethData?.timestamp_display}
+                  predictionPrice={ethVerified?.predictedPrice}
+                  actualPrice={ethVerified?.actualPrice}
+                  errorPercent={ethVerified?.errorPercent}
+                  directionCorrect={ethVerified?.directionCorrect}
+                />
+              </>
+            ) : (
+              <div className="col-span-2 flex justify-center">
+                <p>No verification data available</p>
+              </div>
+            )}
           </div>
         </section>
       </div>
