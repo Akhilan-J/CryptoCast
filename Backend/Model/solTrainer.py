@@ -7,14 +7,14 @@ from sklearn.preprocessing import MinMaxScaler
 import joblib
 from lstm_model import CryptLSTM
 
-df = pd.read_csv("ethereum.csv", parse_dates=["ts"])
+df = pd.read_csv("solana.csv", parse_dates=["ts"])
 df = df.sort_values("ts")
 features  = ["open", "high", "low", "close", "volume"]
 data      = df[features].values
 
 scaler = MinMaxScaler()
 scaled = scaler.fit_transform(data)
-joblib.dump(scaler, "eth_scaler.save")
+joblib.dump(scaler, "sol_scaler.save")
 
 SEQ_LEN   = 24
 close_idx = features.index("close")
@@ -49,5 +49,5 @@ for epoch in range(50):
             val_loss = loss_fn(model(X_val), y_val).item()
         print(f"Epoch {epoch+1}/50  val_loss={val_loss:.6f}")
 
-torch.save(model.state_dict(), "eth_predictor.pt")
-print("Saved eth_predictor.pt")
+torch.save(model.state_dict(), "sol_predictor.pt")
+print("Saved sol_predictor.pt")

@@ -7,16 +7,15 @@ import joblib
 import os
 import sys
 
-# Support both Docker paths and local paths
 _here = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _here)
 from lstm_model import CryptLSTM
 
-CSV_PATH    = os.environ.get("BTC_CSV_PATH",    os.path.join(os.environ.get("APP_DIR", "/app"), "bitcoin.csv"))
-MODEL_PATH  = os.environ.get("BTC_MODEL_PATH",  os.path.join(os.environ.get("APP_DIR", "/app"), "btc_predictor.pt"))
-SCALER_PATH = os.environ.get("BTC_SCALER_PATH", os.path.join(os.environ.get("APP_DIR", "/app"), "btc_scaler.save"))
-OUTPUT_PATH = os.environ.get("BTC_OUTPUT_PATH", os.path.join(os.environ.get("SHARED_DIR", "/app/shared"), "prediction_btc.json"))
-SEQ_LEN     = 12
+CSV_PATH    = os.environ.get("SOL_CSV_PATH",    os.path.join(os.environ.get("APP_DIR", "/app"), "solana.csv"))
+MODEL_PATH  = os.environ.get("SOL_MODEL_PATH",  os.path.join(os.environ.get("APP_DIR", "/app"), "sol_predictor.pt"))
+SCALER_PATH = os.environ.get("SOL_SCALER_PATH", os.path.join(os.environ.get("APP_DIR", "/app"), "sol_scaler.save"))
+OUTPUT_PATH = os.environ.get("SOL_OUTPUT_PATH", os.path.join(os.environ.get("SHARED_DIR", "/app/shared"), "prediction_sol.json"))
+SEQ_LEN     = 24
 
 scaler = joblib.load(SCALER_PATH)
 df     = pd.read_csv(CSV_PATH, parse_dates=["ts"])
@@ -68,4 +67,4 @@ if out_dir:
 with open(OUTPUT_PATH, "w") as f:
     json.dump(output, f, indent=2)
 
-print("Done — prediction_btc.json written")
+print("Done — prediction_sol.json written")

@@ -21,12 +21,11 @@ def fetch():
     df = pd.DataFrame(mkt["prices"], columns=["ts", "close"])
     df["mcap"] = [x[1] for x in mkt["market_caps"]]
     df["volume"] = [x[1] for x in mkt["total_volumes"]]
-    df["ts"] = pd.to_datetime(df["ts"], unit="ms").dt.floor('H')
+    df["ts"] = pd.to_datetime(df["ts"], unit="ms").dt.floor("h")
 
     ohlc = call("ohlc", vs_currency=VS_CURRENCY, days=N_DAYS)
-    print("this is ohls", ohlc)
     df_ohlc = pd.DataFrame(ohlc, columns=["ts", "open", "high", "low", "close_candle"])
-    df_ohlc["ts"] = pd.to_datetime(df_ohlc["ts"], unit="ms").dt.floor('H')
+    df_ohlc["ts"] = pd.to_datetime(df_ohlc["ts"], unit="ms").dt.floor("h")
 
     df = df.merge(df_ohlc, on="ts", how="inner")
 

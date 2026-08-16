@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "Bash(source venv/bin/activate)",
+      "Bash(source .venv/bin/activate)"
+    ]
+  }
+}

@@ -1,10 +1,10 @@
 import requests, os, pandas as pd, time
 
 COINGECKO_API_KEY = os.getenv("API_KEY")
-COIN_ID      = "ethereum"
+COIN_ID      = "ripple"
 VS_CURRENCY  = "usd"
 N_DAYS       = 30
-OUT_CSV      = f"{COIN_ID}.csv"
+OUT_CSV      = "xrp.csv"
 
 def call(endpoint: str, **params):
     base = f"https://api.coingecko.com/api/v3/coins/{COIN_ID}/{endpoint}"

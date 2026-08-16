@@ -1,80 +1,70 @@
-
 import pandas as pd
 import numpy as np
 import json
-from datetime import datetime
-from keras.models import load_model
+import torch
+from datetime import datetime, timezone
 import joblib
 import os
+import sys
 
+_here = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, _here)
+from lstm_model import CryptLSTM
 
-CSV_PATH = "/app/ethereum.csv"
-MODEL_PATH = "/app/eth_predictor.h5"
-SCALER_PATH = "/app/eth_scaler.save"
-OUTPUT_PATH = "/app/shared/prediction_eth.json"
+CSV_PATH    = os.environ.get("ETH_CSV_PATH",    os.path.join(os.environ.get("APP_DIR", "/app"), "ethereum.csv"))
+MODEL_PATH  = os.environ.get("ETH_MODEL_PATH",  os.path.join(os.environ.get("APP_DIR", "/app"), "eth_predictor.pt"))
+SCALER_PATH = os.environ.get("ETH_SCALER_PATH", os.path.join(os.environ.get("APP_DIR", "/app"), "eth_scaler.save"))
+OUTPUT_PATH = os.environ.get("ETH_OUTPUT_PATH", os.path.join(os.environ.get("SHARED_DIR", "/app/shared"), "prediction_eth.json"))
+SEQ_LEN     = 24
 
-SEQ_LEN = 12  # Using 2 days 
-
-#Load model and scaler
-model = load_model(MODEL_PATH)
 scaler = joblib.load(SCALER_PATH)
+df     = pd.read_csv(CSV_PATH, parse_dates=["ts"])
+df     = df.sort_values("ts")
 
-df = pd.read_csv(CSV_PATH, parse_dates=["ts"])
-df = df.sort_values("ts")
-
-features = ["open", "high", "low", "close", "volume"]
-data = df[features].values
-
-scaled_data = scaler.transform(data)
-
-last_seq = scaled_data[-SEQ_LEN:]
-last_seq = np.expand_dims(last_seq, axis=0) 
-
-pred_scaled = model.predict(last_seq)
-
+features  = ["open", "high", "low", "close", "volume"]
+scaled    = scaler.transform(df[features].values)
 close_idx = features.index("close")
-dummy_array = np.zeros((1, len(features)))
-dummy_array[0, close_idx] = pred_scaled[0, 0]
-inverse_pred = scaler.inverse_transform(dummy_array)
-predicted_close = inverse_pred[0, close_idx]
 
+model = CryptLSTM(input_size=len(features))
+model.load_state_dict(torch.load(MODEL_PATH, map_location="cpu"))
+model.eval()
+
+last_seq = torch.tensor(scaled[-SEQ_LEN:], dtype=torch.float32).unsqueeze(0)
+with torch.no_grad():
+    pred_sc = model(last_seq).item()
+
+dummy = np.zeros((1, len(features)))
+dummy[0, close_idx] = pred_sc
+predicted_close   = scaler.inverse_transform(dummy)[0, close_idx]
 last_actual_close = df["close"].iloc[-1]
 
-def get_day_suffix(day):
-    if 11 <= day <= 13:
-        return 'th'
-    elif day % 10 == 1:
-        return 'st'
-    elif day % 10 == 2:
-        return 'nd'
-    elif day % 10 == 3:
-        return 'rd'
-    else:
-        return 'th'
+def day_suffix(d):
+    if 11 <= d <= 13: return "th"
+    return {1:"st", 2:"nd", 3:"rd"}.get(d % 10, "th")
 
-now = datetime.now()
-day = now.day
-suffix = get_day_suffix(day)
-formatted = now.strftime(f"%A, %B {day}{suffix}, at %H:%M")
+now = datetime.now(timezone.utc)
+d   = now.day
+formatted = now.strftime(f"%A, %B {d}{day_suffix(d)}, at %H:%M")
 
 output = {
-    "currentPrice": f"${last_actual_close:,.2f}",
-    "predictedPrice": f"${predicted_close:,.2f}",
-    "priceChange": f"{'▲' if predicted_close > last_actual_close else '▼'} ${abs(predicted_close - last_actual_close):,.2f} ({((predicted_close / last_actual_close) - 1) * 100:.2f}%)",
-    "trend": "Bullish" if predicted_close > last_actual_close else "Bearish",
-    "timestamp": now.strftime("%Y-%m-%dT%H:%M:%S.%fZ"),
+    "currentPrice":      f"${last_actual_close:,.2f}",
+    "predictedPrice":    f"${predicted_close:,.2f}",
+    "priceChange":       f"{'▲' if predicted_close > last_actual_close else '▼'} ${abs(predicted_close - last_actual_close):,.2f} ({((predicted_close/last_actual_close)-1)*100:.2f}%)",
+    "trend":             "Bullish" if predicted_close > last_actual_close else "Bearish",
+    "timestamp":         now.isoformat(),
     "timestamp_display": formatted,
     "raw_data": {
         "last_actual_close": float(last_actual_close),
-        "predicted_close": float(predicted_close),
-        "change_dollars": float(predicted_close - last_actual_close),
-        "change_percent": float(((predicted_close / last_actual_close) - 1) * 100)
-    }
+        "predicted_close":   float(predicted_close),
+        "change_dollars":    float(predicted_close - last_actual_close),
+        "change_percent":    float(((predicted_close / last_actual_close) - 1) * 100),
+    },
 }
 
+out_dir = os.path.dirname(OUTPUT_PATH)
+if out_dir:
+    os.makedirs(out_dir, exist_ok=True)
 with open(OUTPUT_PATH, "w") as f:
     json.dump(output, f, indent=2)
 
-
-
-print("Done")
+print("Done — prediction_eth.json written")

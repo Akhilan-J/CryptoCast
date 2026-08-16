@@ -6,66 +6,63 @@ import os
 import sys
 import time
 
-
 os.makedirs("logs", exist_ok=True)
 
-# Configure logger
 logging.basicConfig(
-    filename="/app/shared/prediction_logs.txt", 
+    filename=os.environ.get("LOG_PATH", "/app/shared/prediction_logs.txt"),
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S"
+    datefmt="%Y-%m-%d %H:%M:%S",
 )
+
+API_BASE = os.environ.get("API_BASE", "https://api.cryptocast.live")
 
 def run_script(script_path):
     logging.info(f"Running script: {script_path}")
     subprocess.run([sys.executable, script_path], check=True)
 
+def post(path):
+    try:
+        r = requests.post(f"{API_BASE}{path}", timeout=30)
+        r.raise_for_status()
+        logging.info(f"POST {path} → {r.json().get('status', 'ok')}")
+    except Exception as e:
+        logging.error(f"POST {path} failed: {e}")
+
 def main():
-    # Convert 4 hours to seconds
+    logging.info("Starting prediction pipeline with 4-hour intervals")
 
-    logging.info(f"Starting prediction pipeline with 4-hour intervals")
-
-    
     while True:
         try:
             logging.info("Starting prediction cycle")
             print(f"[{datetime.now()}] Starting prediction cycle")
-            
-            # To get the latest data from the API
-            run_script("/app/api_btc.py")
-            run_script("/app/api_eth.py")
 
-            # To run the predictions
-            run_script("/app/btcPredictor.py")
-            run_script("/app/ethPredictor.py")
+            # Fetch latest market data
+            for script in ["api_btc.py", "api_eth.py", "api_sol.py", "api_xrp.py"]:
+                run_script(f"/app/{script}")
+                time.sleep(15)  # rate-limit buffer between CoinGecko calls
 
-            # To record the verified data in the database
-            res1 = requests.post("https://api.cryptocast.live/verify/btc")
-            res2 = requests.post("https://api.cryptocast.live/verify/eth")
+            # Run predictions
+            for script in ["btcPredictor.py", "ethPredictor.py", "solPredictor.py", "xrpPredictor.py"]:
+                run_script(f"/app/{script}")
 
-            # To record the data in the database
-            res3 = requests.post("https://api.cryptocast.live/record/btc")
-            res4 = requests.post("https://api.cryptocast.live/record/eth")
+            # Verify previous predictions against actual prices
+            for coin in ["btc", "eth", "sol", "xrp"]:
+                post(f"/verify/{coin}")
 
+            # Record new predictions to DB
+            for coin in ["btc", "eth", "sol", "xrp"]:
+                post(f"/record/{coin}")
 
-            logging.info("Successfully recorded verified data")
-            print(f"[{datetime.now()}] Recorded verified BTC and ETH data")
-            logging.info("Successfully completed prediction cycle")
-            print(f"[{datetime.now()}] Recorded BTC and ETH data")
+            logging.info("Prediction cycle completed successfully")
             print(f"[{datetime.now()}] Prediction cycle completed successfully")
-            
-            # Sleep for 4 hours
-            time.sleep(3600*4)
+
+            time.sleep(3600 * 4)
 
         except Exception as e:
             logging.error(f"Error in prediction cycle: {e}")
-            print(f"[{datetime.now()}] Error: {e}")
-            print(f"[{datetime.now()}] Retrying in 1 hour...")
-            time.sleep(3600)  
+            print(f"[{datetime.now()}] Error: {e} — retrying in 1 hour")
+            time.sleep(3600)
 
 if __name__ == "__main__":
     main()
-
-
-

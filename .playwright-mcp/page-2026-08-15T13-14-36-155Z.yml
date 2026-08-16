@@ -1,0 +1,64 @@
+- generic [ref=e3]:
+  - generic [ref=e7]:
+    - navigation [ref=e8]:
+      - link [ref=e9] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e10]:
+          - img "logo" [ref=e11]
+          - heading "CryptoCast" [level=1] [ref=e12]
+      - link [ref=e14] [cursor=pointer]:
+        - /url: /Main
+        - button [ref=e15]:
+          - link "Go to App" [ref=e18]:
+            - /url: /Main
+    - generic [ref=e21]:
+      - heading "Predict the Future of Crypto with CryptoCast" [level=1] [ref=e22]
+      - generic [ref=e23]:
+        - paragraph [ref=e25]: Real-time machine learning predictions for top cryptocurrencies. Stay ahead of the market, powered by data, not hype.
+        - link [ref=e28] [cursor=pointer]:
+          - /url: /Main
+          - button "Go to App" [ref=e30]
+      - link [ref=e36] [cursor=pointer]:
+        - /url: "#intro"
+        - paragraph [ref=e37]: Learn more
+    - generic [ref=e41]:
+      - generic [ref=e42]:
+        - generic [ref=e43]: Prediction Accuracy — Bitcoin (BTC)
+        - generic [ref=e45]:
+          - combobox "Select coin" [ref=e46]:
+            - generic: Bitcoin (BTC)
+          - combobox "Select range" [ref=e47]:
+            - generic: Last 30 days
+      - generic [ref=e48]: Loading…
+  - generic [ref=e51]:
+    - generic [ref=e52]: Who said crypto forecasting has to be a guessing game?
+    - generic [ref=e53]:
+      - text: With CryptoCast, predicting crypto prices becomes clear, confident, and kind of addictive. Our intelligent platform cuts through the noise, delivering real-time forecasts powered by deep learning no spreadsheets, no second-guessing.
+      - generic [ref=e54]: Say goodbye to hype and hello to high accuracy signals.
+  - generic [ref=e56]:
+    - generic [ref=e57]:
+      - text: Tired of chasing charts? CryptoCast keeps you ahead with updates every 4 hours , clean visuals, and a system that learns as fast as the market moves.
+      - generic [ref=e58]: You watch the trends we crunch the numbers.
+    - generic [ref=e59]: Stop refreshing Start predicting.
+  - generic [ref=e61]:
+    - generic [ref=e67]:
+      - heading "See where ML-powered crypto forecasting can take your portfolio." [level=2] [ref=e68]
+      - paragraph [ref=e69]: The first crypto prediction tool you'll trust. And the last one you'll ever need.
+      - button [ref=e71]:
+        - link "Start Forecasting" [ref=e74] [cursor=pointer]:
+          - /url: /Main
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]:
+          - link "Follow on LinkedIn" [ref=e81] [cursor=pointer]:
+            - /url: https://www.linkedin.com/in/akhilan-jeyaraj/
+          - link "Follow on GitHub" [ref=e84] [cursor=pointer]:
+            - /url: https://github.com/Akhilan-J
+        - generic [ref=e87]:
+          - paragraph [ref=e89]: © 2025 CryptoCast
+          - generic [ref=e90]:
+            - link "Privacy Policy" [ref=e91] [cursor=pointer]:
+              - /url: /Privacy
+            - link "Terms of Use" [ref=e92] [cursor=pointer]:
+              - /url: /Terms
+      - paragraph [ref=e94]: CryptoCast provides cryptocurrency price forecasting and analysis tools. Past performance does not guarantee future results. Cryptocurrency investments carry significant risk.

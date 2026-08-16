@@ -1,0 +1,39 @@
+[     161ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YFB5YCE7.js?v=28f1e096:21608
+[     375ms] [LOG] Container @ http://localhost:5174/src/Components/particleBakground.tsx:46
+[     376ms] [LOG] Container @ http://localhost:5174/src/Components/particleBakground.tsx:46
+[     532ms] [ERROR] Warning: Failed %s type: %s%s prop Invalid prop `children` supplied to `Icon`, expected a ReactNode. 
+    at Icon2 (http://localhost:5174/node_modules/.vite/deps/@carbon_react.js?v=28f1e096:5360:3)
+    at CheckmarkOutline2 (http://localhost:5174/node_modules/.vite/deps/@carbon_react.js?v=28f1e096:15860:3)
+    at div
+    at IconIndicatorContent (http://localhost:5174/node_modules/.vite/deps/@carbon_react.js?v=28f1e096:110452:14)
+    at span
+    at http://localhost:5174/node_modules/.vite/deps/chunk-MVYDASTQ.js?v=28f1e096:164:13
+    at http://localhost:5174/node_modules/.vite/deps/chunk-MVYDASTQ.js?v=28f1e096:141:13
+    at http://localhost:5174/node_modules/.vite/deps/chunk-MVYDASTQ.js?v=28f1e096:256:13
+    at http://localhost:5174/node_modules/.vite/deps/chunk-MVYDASTQ.js?v=28f1e096:164:13
+    at http://localhost:5174/node_modules/.vite/deps/chunk-MVYDASTQ.js?v=28f1e096:141:13
+    at http://localhost:5174/node_modules/.vite/deps/chunk-MVYDASTQ.js?v=28f1e096:256:13
+    at http://localhost:5174/node_modules/.vite/deps/chunk-MVYDASTQ.js?v=28f1e096:599:13
+    at http://localhost:5174/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=28f1e096:310:13
+    at TooltipTrigger (http://localhost:5174/src/Components/ui/tooltip.tsx:53:30)
+    at Provider (http://localhost:5174/node_modules/.vite/deps/chunk-MVYDASTQ.js?v=28f1e096:83:15)
+    at Provider (http://localhost:5174/node_modules/.vite/deps/chunk-MVYDASTQ.js?v=28f1e096:83:15)
+    at Popper (http://localhost:5174/node_modules/.vite/deps/chunk-MVYDASTQ.js?v=28f1e096:591:11)
+    at Tooltip (http://localhost:5174/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=28f1e096:218:5)
+    at Provider (http://localhost:5174/node_modules/.vite/deps/chunk-MVYDASTQ.js?v=28f1e096:83:15)
+    at TooltipProvider (http://localhost:5174/node_modules/.vite/deps/@radix-ui_react-tooltip.js?v=28f1e096:174:5)
+    at TooltipProvider (http://localhost:5174/src/Components/ui/tooltip.tsx:24:28)
+    at Tooltip (http://localhost:5174/src/Components/ui/tooltip.tsx:36:23)
+    at div
+    at Indicator (http://localhost:5174/src/Components/Indicator.tsx:23:22)
+    at div
+    at div
+    at div
+    at main
+    at MainPage (http://localhost:5174/src/Pages/MainPage.tsx?t=1786799814485:54:41)
+    at RenderedRoute (http://localhost:5174/node_modules/.vite/deps/react-router.js?v=28f1e096:5452:26)
+    at Routes (http://localhost:5174/node_modules/.vite/deps/react-router.js?v=28f1e096:6185:3)
+    at Router (http://localhost:5174/node_modules/.vite/deps/react-router.js?v=28f1e096:6128:13)
+    at BrowserRouter (http://localhost:5174/node_modules/.vite/deps/react-router.js?v=28f1e096:9146:3)
+    at App @ http://localhost:5174/node_modules/.vite/deps/chunk-RLJ2RCJQ.js?v=28f1e096:135
+[     579ms] [LOG] Container @ http://localhost:5174/src/Components/particleBakground.tsx:46
