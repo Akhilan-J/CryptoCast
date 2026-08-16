@@ -1,0 +1,14 @@
+{
+  "currentPrice": "$1.0016",
+  "predictedPrice": "$1.0202",
+  "priceChange": "\u25b2 $0.0187 (1.86%)",
+  "trend": "Bullish",
+  "timestamp": "2026-08-15T12:48:12.618898+00:00",
+  "timestamp_display": "Saturday, August 15th, at 12:48",
+  "raw_data": {
+    "last_actual_close": 1.0015524355751102,
+    "predicted_close": 1.0202167112107174,
+    "change_dollars": 0.01866427563560724,
+    "change_percent": 1.86353454623569
+  }
+}

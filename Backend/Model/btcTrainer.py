@@ -1,76 +1,53 @@
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-from tensorflow import keras
+import torch
+import torch.nn as nn
+from torch.utils.data import DataLoader, TensorDataset
 from sklearn.preprocessing import MinMaxScaler
-from keras.models import Sequential
-from keras.layers import LSTM, Dense, Dropout
-import json
-from datetime import datetime
-import os
 import joblib
+from lstm_model import CryptLSTM
 
 df = pd.read_csv("bitcoin.csv", parse_dates=["ts"])
 df = df.sort_values("ts")
-features = ["open", "high", "low", "close", "volume"]
-data = df[features].values
+features  = ["open", "high", "low", "close", "volume"]
+data      = df[features].values
 
 scaler = MinMaxScaler()
-scaled_data = scaler.fit_transform(data)
+scaled = scaler.fit_transform(data)
 joblib.dump(scaler, "btc_scaler.save")
 
-SEQ_LEN = 12 # 2 days of data 
-
-X = []
-y = [] 
-
+SEQ_LEN   = 12
 close_idx = features.index("close")
 
-for i in range(SEQ_LEN, len(scaled_data)):
-    X.append(scaled_data[i-SEQ_LEN:i])
-    y.append(scaled_data[i, close_idx:close_idx+1])
+X, y = [], []
+for i in range(SEQ_LEN, len(scaled)):
+    X.append(scaled[i-SEQ_LEN:i])
+    y.append(scaled[i, close_idx])
 
-X = np.array(X)
-y = np.array(y)
+X = torch.tensor(np.array(X), dtype=torch.float32)
+y = torch.tensor(np.array(y), dtype=torch.float32).unsqueeze(1)
 
-split = int(0.8 * len(X))
+split    = int(0.8 * len(X))
 X_train, X_val = X[:split], X[split:]
 y_train, y_val = y[:split], y[split:]
 
-model = Sequential()
-model.add(LSTM(units=64, return_sequences=True, input_shape=(X.shape[1], X.shape[2])))
-model.add(Dropout(0.2))
-model.add(LSTM(units=64, return_sequences=False))
-model.add(Dropout(0.2))
-model.add(Dense(32))
-model.add(Dense(1))  
+loader = DataLoader(TensorDataset(X_train, y_train), batch_size=32, shuffle=True)
 
+model     = CryptLSTM(input_size=len(features))
+optimizer = torch.optim.Adam(model.parameters())
+loss_fn   = nn.MSELoss()
 
-model.compile(optimizer="adam", loss="mean_squared_error")
-history = model.fit(
-    X_train, y_train,
-    epochs=50,
-    batch_size=32,
-    validation_data=(X_val, y_val),
-    verbose=1
-)
+for epoch in range(50):
+    model.train()
+    for xb, yb in loader:
+        optimizer.zero_grad()
+        loss_fn(model(xb), yb).backward()
+        optimizer.step()
+    if (epoch + 1) % 10 == 0:
+        model.eval()
+        with torch.no_grad():
+            val_loss = loss_fn(model(X_val), y_val).item()
+        print(f"Epoch {epoch+1}/50  val_loss={val_loss:.6f}")
 
-last_seq = scaled_data[-SEQ_LEN:]
-last_seq = np.expand_dims(last_seq, axis=0)
-
-pred_scaled = model.predict(last_seq)
-
-dummy_array = np.zeros((1, len(features)))
-dummy_array[0, close_idx] = pred_scaled[0, 0]
-
-inverse_pred = scaler.inverse_transform(dummy_array)
-predicted_close = inverse_pred[0, close_idx]
-
-last_actual_close = df["close"].iloc[-1]
-
-now = datetime.now()
-current_time=now.strftime("%H:%M:%S")
-
-
-#Finally, save the model
-model.save("btc_predictor.h5")
+torch.save(model.state_dict(), "btc_predictor.pt")
+print("Saved btc_predictor.pt")

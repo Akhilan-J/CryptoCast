@@ -1,0 +1,25 @@
+- main [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - link [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "CryptoCast" [ref=e8]
+      - heading "CryptoCast" [level=1] [ref=e9]
+      - paragraph [ref=e10]: AI-powered crypto price predictions
+    - generic [ref=e11]:
+      - button "BTC" [ref=e12]
+      - button "ETH" [ref=e13]
+      - button "SOL" [ref=e14]
+      - button "XRP" [ref=e15]
+    - generic [ref=e20]:
+      - heading "Prediction Accuracy" [level=2] [ref=e21]
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - generic [ref=e24]: Prediction Accuracy — Bitcoin (BTC)
+          - generic [ref=e26]:
+            - combobox "Select coin" [ref=e27]:
+              - generic: Bitcoin (BTC)
+            - combobox "Select range" [ref=e28]:
+              - generic: Last 30 days
+        - generic [ref=e29]: Loading…
+    - heading "Latest Predictions" [level=2] [ref=e32]

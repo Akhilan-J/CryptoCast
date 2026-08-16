@@ -1,0 +1,81 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e7]:
+      - navigation [ref=e8]:
+        - link [ref=e9] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e10]:
+            - img "logo" [ref=e11]
+            - heading "CryptoCast" [level=1] [ref=e12]
+        - link [ref=e14] [cursor=pointer]:
+          - /url: /Main
+          - button [ref=e15]:
+            - link "Go to App" [ref=e18]:
+              - /url: /Main
+      - generic [ref=e21]:
+        - heading "Predict the Future of Crypto with CryptoCast" [level=1] [ref=e22]
+        - generic [ref=e23]:
+          - paragraph [ref=e25]: Real-time machine learning predictions for top cryptocurrencies. Stay ahead of the market, powered by data, not hype.
+          - link [ref=e28] [cursor=pointer]:
+            - /url: /Main
+            - button "Go to App" [ref=e30]
+        - link [ref=e36] [cursor=pointer]:
+          - /url: "#intro"
+          - paragraph [ref=e37]: Learn more
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: Our Btc Predictions
+          - combobox "Select a value" [ref=e45]:
+            - generic: Last 30 days
+        - application [ref=e49]:
+          - generic [ref=e51]:
+            - generic [ref=e52]: CryptoCast
+            - generic [ref=e54]: Market
+          - application [ref=e56]:
+            - generic [ref=e60]:
+              - generic [ref=e61]: Jul 2
+              - generic [ref=e63]: Jul 6
+              - generic [ref=e65]: Jul 10
+              - generic [ref=e67]: Jul 14
+              - generic [ref=e69]: Jul 18
+              - generic [ref=e71]: Jul 22
+              - generic [ref=e73]: Jul 26
+              - generic [ref=e75]: Jul 31
+            - generic [ref=e78]:
+              - generic [ref=e79]: $105.6k
+              - generic [ref=e81]: $106.3k
+              - generic [ref=e83]: $107.0k
+              - generic [ref=e85]: $108.3k
+    - generic [ref=e100]:
+      - generic [ref=e101]: Who said crypto forecasting has to be a guessing game?
+      - generic [ref=e102]:
+        - text: With CryptoCast, predicting crypto prices becomes clear, confident, and kind of addictive. Our intelligent platform cuts through the noise, delivering real-time forecasts powered by deep learning no spreadsheets, no second-guessing.
+        - generic [ref=e103]: Say goodbye to hype and hello to high accuracy signals.
+    - generic [ref=e105]:
+      - generic [ref=e106]:
+        - text: Tired of chasing charts? CryptoCast keeps you ahead with updates every 4 hours , clean visuals, and a system that learns as fast as the market moves.
+        - generic [ref=e107]: You watch the trends we crunch the numbers.
+      - generic [ref=e108]: Stop refreshing Start predicting.
+    - generic [ref=e110]:
+      - generic [ref=e116]:
+        - heading "See where ML-powered crypto forecasting can take your portfolio." [level=2] [ref=e117]
+        - paragraph [ref=e118]: The first crypto prediction tool you'll trust. And the last one you'll ever need.
+        - button [ref=e120]:
+          - link "Start Forecasting" [ref=e123] [cursor=pointer]:
+            - /url: /Main
+      - generic [ref=e127]:
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - link "Follow on LinkedIn" [ref=e130] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/akhilan-jeyaraj/
+            - link "Follow on GitHub" [ref=e133] [cursor=pointer]:
+              - /url: https://github.com/Akhilan-J
+          - generic [ref=e136]:
+            - paragraph [ref=e138]: © 2025 CryptoCast
+            - generic [ref=e139]:
+              - link "Privacy Policy" [ref=e140] [cursor=pointer]:
+                - /url: /Privacy
+              - link "Terms of Use" [ref=e141] [cursor=pointer]:
+                - /url: /Terms
+        - paragraph [ref=e143]: CryptoCast provides cryptocurrency price forecasting and analysis tools. Past performance does not guarantee future results. Cryptocurrency investments carry significant risk.
+  - generic [ref=e144]: $105.6k

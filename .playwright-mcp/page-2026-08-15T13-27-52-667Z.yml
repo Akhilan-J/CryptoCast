@@ -1,0 +1,40 @@
+- main [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - link [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "CryptoCast" [ref=e8]
+      - heading "CryptoCast" [level=1] [ref=e9]
+      - paragraph [ref=e10]: AI-powered crypto price predictions
+    - generic [ref=e11]:
+      - button [ref=e12]:
+        - img "BTC" [ref=e13]
+        - text: BTC
+      - button [ref=e14]:
+        - img "ETH" [ref=e15]
+        - text: ETH
+      - button [ref=e16]:
+        - img "SOL" [ref=e17]
+        - text: SOL
+      - button [ref=e18]:
+        - img "XRP" [ref=e19]
+        - text: XRP
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e26]: 🔔
+        - heading "Price Alert" [level=3] [ref=e27]
+        - generic [ref=e28]: — get an email when BTC hits your target
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]: Email
+          - textbox "you@email.com" [ref=e32]
+        - generic [ref=e33]:
+          - generic [ref=e34]: Direction
+          - generic [ref=e35]:
+            - button "↑ Above" [ref=e36]
+            - button "↓ Below" [ref=e37]
+        - generic [ref=e38]:
+          - generic [ref=e39]: Price Target
+          - spinbutton "0" [ref=e40]
+        - button "Set Alert" [ref=e41]
+    - heading "Latest Predictions" [level=2] [ref=e43]

@@ -1,0 +1,14 @@
+{
+  "currentPrice": "$75.18",
+  "predictedPrice": "$75.16",
+  "priceChange": "\u25bc $0.02 (-0.03%)",
+  "trend": "Bearish",
+  "timestamp": "2026-08-15T12:48:11.175901+00:00",
+  "timestamp_display": "Saturday, August 15th, at 12:48",
+  "raw_data": {
+    "last_actual_close": 75.18159719159003,
+    "predicted_close": 75.16266751110108,
+    "change_dollars": -0.018929680488952272,
+    "change_percent": -0.02517860912253367
+  }
+}

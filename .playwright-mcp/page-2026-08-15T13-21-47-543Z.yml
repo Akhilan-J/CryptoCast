@@ -1,0 +1,22 @@
+- main [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - link [ref=e7] [cursor=pointer]:
+        - /url: /
+        - img "CryptoCast" [ref=e8]
+      - heading "CryptoCast" [level=1] [ref=e9]
+      - paragraph [ref=e10]: AI-powered crypto price predictions
+    - generic [ref=e11]:
+      - button [ref=e12]:
+        - img "BTC" [ref=e13]
+        - text: BTC
+      - button [ref=e14]:
+        - img "ETH" [ref=e15]
+        - text: ETH
+      - button [ref=e16]:
+        - img "SOL" [ref=e17]
+        - text: SOL
+      - button [ref=e18]:
+        - img "XRP" [ref=e19]
+        - text: XRP
+    - heading "Latest Predictions" [level=2] [ref=e25]

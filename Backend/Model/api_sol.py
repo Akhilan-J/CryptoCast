@@ -1,10 +1,10 @@
 import requests, os, pandas as pd, time
 
 COINGECKO_API_KEY = os.getenv("API_KEY")
-COIN_ID      = "ethereum"
+COIN_ID      = "solana"
 VS_CURRENCY  = "usd"
 N_DAYS       = 30
-OUT_CSV      = f"{COIN_ID}.csv"
+OUT_CSV      = "solana.csv"
 
 def call(endpoint: str, **params):
     base = f"https://api.coingecko.com/api/v3/coins/{COIN_ID}/{endpoint}"
@@ -22,7 +22,7 @@ def fetch():
     df["volume"] = [x[1] for x in mkt["total_volumes"]]
     df["ts"]     = pd.to_datetime(df["ts"], unit="ms").dt.floor("h")
 
-    time.sleep(12)
+    time.sleep(12)  # respect free-tier rate limit
 
     ohlc = call("ohlc", vs_currency=VS_CURRENCY, days=N_DAYS)
     df_ohlc = pd.DataFrame(ohlc, columns=["ts", "open", "high", "low", "close_candle"])
