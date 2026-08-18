@@ -1,4 +1,5 @@
 import requests
+import json
 from datetime import datetime
 import subprocess
 import logging
@@ -21,13 +22,18 @@ def run_script(script_path):
     logging.info(f"Running script: {script_path}")
     subprocess.run([sys.executable, script_path], check=True)
 
-def post(path):
+def post(path, data=None):
     try:
-        r = requests.post(f"{API_BASE}{path}", timeout=30)
+        r = requests.post(f"{API_BASE}{path}", json=data, timeout=30)
         r.raise_for_status()
         logging.info(f"POST {path} → {r.json().get('status', 'ok')}")
     except Exception as e:
         logging.error(f"POST {path} failed: {e}")
+
+def read_prediction(filename):
+    path = os.path.join(os.environ.get("SHARED_DIR", "/app/shared"), filename)
+    with open(path) as f:
+        return json.load(f)
 
 def main():
     logging.info("Starting prediction pipeline with 4-hour intervals")
@@ -51,8 +57,13 @@ def main():
                 post(f"/verify/{coin}")
 
             # Record new predictions to DB
-            for coin in ["btc", "eth", "sol", "xrp"]:
-                post(f"/record/{coin}")
+            for coin, filename in [
+                ("btc", "prediction_btc.json"),
+                ("eth", "prediction_eth.json"),
+                ("sol", "prediction_sol.json"),
+                ("xrp", "prediction_xrp.json"),
+            ]:
+                post(f"/record/{coin}", data=read_prediction(filename))
 
             logging.info("Prediction cycle completed successfully")
             print(f"[{datetime.now()}] Prediction cycle completed successfully")

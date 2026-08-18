@@ -98,8 +98,7 @@ def home():
 @app.route("/record/btc", methods=["POST"])
 def record_btc():
     try:
-        with open(_prediction_path("prediction_btc.json")) as f:
-            data = json.load(f)
+        data = request.get_json()
         result = db.btc.insert_one(data)
         data["_id"] = str(result.inserted_id)
         return jsonify({"status": "Success", "message": "BTC data recorded successfully", "data": data}), 200
@@ -110,8 +109,7 @@ def record_btc():
 @app.route("/record/eth", methods=["POST"])
 def record_eth():
     try:
-        with open(_prediction_path("prediction_eth.json")) as f:
-            data = json.load(f)
+        data = request.get_json()
         result = db.eth.insert_one(data)
         data["_id"] = str(result.inserted_id)
         return jsonify({"status": "Success", "message": "ETH data recorded successfully", "data": data}), 200
@@ -122,8 +120,7 @@ def record_eth():
 @app.route("/record/sol", methods=["POST"])
 def record_sol():
     try:
-        with open(_prediction_path("prediction_sol.json")) as f:
-            data = json.load(f)
+        data = request.get_json()
         result = db.sol.insert_one(data)
         data["_id"] = str(result.inserted_id)
         return jsonify({"status": "Success", "message": "SOL data recorded successfully", "data": data}), 200
@@ -134,8 +131,7 @@ def record_sol():
 @app.route("/record/xrp", methods=["POST"])
 def record_xrp():
     try:
-        with open(_prediction_path("prediction_xrp.json")) as f:
-            data = json.load(f)
+        data = request.get_json()
         result = db.xrp.insert_one(data)
         data["_id"] = str(result.inserted_id)
         return jsonify({"status": "Success", "message": "XRP data recorded successfully", "data": data}), 200
